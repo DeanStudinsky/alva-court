@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Alva Court — Desert Top-Down</title>
+<style>
+  * { margin: 0; padding: 0; }
+  body { overflow: hidden; background: #1a1a1a; }
+  canvas { display: block; }
+  #hud {
+    position: absolute; top: 12px; left: 12px;
+    color: #eee; font: 13px/1.5 monospace;
+    background: rgba(0,0,0,0.8); padding: 12px;
+    border-radius: 8px; pointer-events: none;
+    border: 1px solid #444;
+  }
+  #hud b { color: #f0c040; }
+  #loading {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: #eee; font: 20px monospace;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="hud">
+  <b>Alva Court — Desert Top-Down</b><br>
+  • Road: 22ft W × 360ft L | Cul-de-sac R: 35ft<br>
+  • 4K PBR Asphalt + Noise Overlays | Sun: Southeast<br>
+  • Controls: Left=Orbit | Right=Pan | Scroll=Zoom
+</div>
+<div id="loading">Loading & compositing textures…</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
+
+/* ── CONFIGURATION ── */
+const ROAD_LEN = 360;
+const ROAD_W   = 22;
+const CDS_R    = 35;
+const SW_W     = 68 / 12;   // ~5.67 ft
+const CURB_H   = 0.5;
+
+const TILE_SIZE  = 20;
+const ROAD_REP_X = ROAD_LEN / TILE_SIZE;
+const ROAD_REP_Y = ROAD_W / TILE_SIZE;
+const CDS_REP    = (CDS_R * 2) / TILE_SIZE;
+
+/* ── HELPERS ── */
+
+function loadImg(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error('Failed to load: ' + src));
+    img.src = src;
+  });
+}
+
+// Seeded PRNG
+function seededRng(seed) {
+  let s = seed >>> 0;
+  return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 0xffffffff; };
+}
+
+// 2-octave value noise — smooth organic patches
+function makeNoise(seed) {
+  const rng = seededRng(seed);
+  const COLS1 = 6, ROWS1 = 6, COLS2 = 14, ROWS2 = 14;
+  const g1 = Array.from({ length: (COLS1+1)*(ROWS1+1) }, rng);
+  const g2 = Array.from({ length: (COLS2+1)*(ROWS2+1) }, rng);
+
+  function sample(grid, cols, rows, u, v) {
+    const x = u * cols, y = v * rows;
+    const ix = Math.floor(x), iy = Math.floor(y);
+    const fx = x - ix, fy = y - iy;
+    const sx = fx*fx*(3 - 2*fx), sy = fy*fy*(3 - 2*fy);
+    const i = (r, c) => (r % (rows+1)) * (cols+1) + (c % (cols+1));
+    return grid[i(iy,ix)]*(1-sx)*(1-sy) + grid[i(iy,ix+1)]*sx*(1-sy)
+         + grid[i(iy+1,ix)]*(1-sx)*sy   + grid[i(iy+1,ix+1)]*sx*sy;
+  }
+
+  return (u, v) => sample(g1,COLS1,ROWS1,u,v)*0.65 + sample(g2,COLS2,ROWS2,u,v)*0.35;
+}
+
+// Blend overlay onto dest canvas using per-pixel noise-driven alpha
+function blendWithNoise(destCtx, overlayImg, size, noiseFn, maxAlpha) {
+  const tmp = document.createElement('canvas');
+  tmp.width = tmp.height = size;
+  const tctx = tmp.getContext('2d');
+  tctx.drawImage(overlayImg, 0, 0, size, size);
+  const imgData = tctx.getImageData(0, 0, size, size);
+  const d = imgData.data;
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const idx = (y * size + x) * 4;
+      d[idx+3] = Math.floor(noiseFn(x / size, y / size) * maxAlpha * 255);
+    }
+  }
+  tctx.putImageData(imgData, 0, 0);
+  destCtx.drawImage(tmp, 0, 0);
+}
+
+// Simple flat overlay at fixed alpha
+function blendFlat(destCtx, overlayImg, size, alpha) {
+  destCtx.globalAlpha = alpha;
+  destCtx.drawImage(overlayImg, 0, 0, size, size);
+  destCtx.globalAlpha = 1.0;
+}
+
+/* ── LOAD ALL IMAGES ── */
+const TEX = 'asphalt%20assets/textures/';
+const ASP = 'asphalt%20assets/';
+const CEM = 'cement%20assets/';
+
+const [
+  aspBase,          // 0 — 4K PBR diffuse
+  aspOverlayA,      // 1 — broken asphalt A
+  aspOverlayB,      // 2 — broken asphalt B
+  cemBase,          // 3 — clean concrete slab
+  cemWeathered,     // 4 — martin-van-maaren weathered
+  cemCracks,        // 5 — curly cracks texture
+] = await Promise.all([
+  loadImg(TEX + 'asphalt_02_diff_4k.jpg'),
+  loadImg(ASP + 'black-broken-asphalt-texture-background.jpg'),
+  loadImg(ASP + 'black-broken-asphalt-texture-background%20(1).jpg'),
+  loadImg(CEM + 'cement-concrete-texture-copy-space.jpg'),
+  loadImg(CEM + 'martin-van-maaren-l3WPo-bchxk-unsplash.jpg'),
+  loadImg(CEM + 'texture-grey-concrete-wall-with-curly-cracks.jpg'),
+]);
+
+/* ── COMPOSITE ASPHALT TEXTURE ── */
+// Base 4K + two broken asphalt overlays at 30% via Perlin noise
+const COMP = 2048;
+const aspCanvas = document.createElement('canvas');
+aspCanvas.width = aspCanvas.height = COMP;
+const actx = aspCanvas.getContext('2d');
+
+// Draw base asphalt
+actx.drawImage(aspBase, 0, 0, COMP, COMP);
+
+// Overlay A — organic noise patches at 30% max opacity
+blendWithNoise(actx, aspOverlayA, COMP, makeNoise(42), 0.3);
+
+// Overlay B — different noise pattern at 30% max opacity
+blendWithNoise(actx, aspOverlayB, COMP, makeNoise(137), 0.3);
+
+/* ── COMPOSITE CEMENT SLAB VARIANTS ── */
+// 3 variants: base only, base+weathered, base+cracks — each overlay at 30%
+const SLAB_TEX = 512;
+
+function makeCementVariant(overlayImg) {
+  const c = document.createElement('canvas');
+  c.width = c.height = SLAB_TEX;
+  const ctx = c.getContext('2d');
+  ctx.drawImage(cemBase, 0, 0, SLAB_TEX, SLAB_TEX);
+  if (overlayImg) blendFlat(ctx, overlayImg, SLAB_TEX, 0.3);
+  return c;
+}
+
+const cemVariants = [
+  makeCementVariant(null),          // plain base
+  makeCementVariant(cemWeathered),  // base + weathered 30%
+  makeCementVariant(cemCracks),     // base + cracks 30%
+];
+
+/* ── SCENE SETUP ── */
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.2;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x87CEEB);
+
+// Top-down camera
+const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 2000);
+camera.position.set(ROAD_LEN / 2, 500, 0);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.target.set(ROAD_LEN / 2, 0, 0);
+controls.update();
+
+/* ── MATERIALS ── */
+
+// Asphalt — composited diffuse + PBR roughness
+function makeAsphaltTex(repX, repY) {
+  const tex = new THREE.CanvasTexture(aspCanvas);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(repX, repY);
+  tex.anisotropy = 16;
+  return tex;
+}
+
+const texLoader = new THREE.TextureLoader();
+function loadRepeatTex(path, repX, repY) {
+  const tex = texLoader.load(path);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(repX, repY);
+  tex.anisotropy = 16;
+  return tex;
+}
+
+const roadRough = loadRepeatTex(TEX + 'asphalt_02_rough_4k.jpg', ROAD_REP_X, ROAD_REP_Y);
+const cdsRough  = loadRepeatTex(TEX + 'asphalt_02_rough_4k.jpg', CDS_REP, CDS_REP);
+
+const matRoad = new THREE.MeshStandardMaterial({
+  map: makeAsphaltTex(ROAD_REP_X, ROAD_REP_Y),
+  roughnessMap: roadRough,
+  roughness: 1.0,
+  metalness: 0.0,
+});
+
+const matCds = new THREE.MeshStandardMaterial({
+  map: makeAsphaltTex(CDS_REP, CDS_REP),
+  roughnessMap: cdsRough,
+  roughness: 1.0,
+  metalness: 0.0,
+});
+
+// Cement slab materials — one per variant
+const slabMats = cemVariants.map(canvas => {
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.wrapS = tex.wrapT = THREE.ClampToEdgeWrapping;
+  tex.anisotropy = 16;
+  return new THREE.MeshStandardMaterial({ map: tex, roughness: 0.85, metalness: 0.0 });
+});
+
+const matCurb = new THREE.MeshStandardMaterial({ color: 0xb0a890 });
+
+// Load EXR normal map async — scene renders immediately without it
+const exrLoader = new EXRLoader();
+exrLoader.load(TEX + 'asphalt_02_nor_gl_4k.exr', (tex) => {
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.anisotropy = 16;
+
+  tex.repeat.set(ROAD_REP_X, ROAD_REP_Y);
+  matRoad.normalMap = tex;
+  matRoad.needsUpdate = true;
+
+  const cdsTex = tex.clone();
+  cdsTex.repeat.set(CDS_REP, CDS_REP);
+  cdsTex.needsUpdate = true;
+  matCds.normalMap = cdsTex;
+  matCds.needsUpdate = true;
+
+  document.getElementById('loading').style.display = 'none';
+}, undefined, () => {
+  document.getElementById('loading').style.display = 'none';
+});
+
+/* ── GEOMETRY ── */
+
+// Straight road
+const roadGeo = new THREE.PlaneGeometry(ROAD_LEN, ROAD_W, 1, 1);
+roadGeo.rotateX(-Math.PI / 2);
+roadGeo.translate(ROAD_LEN / 2, 0.01, 0);
+const road = new THREE.Mesh(roadGeo, matRoad);
+road.receiveShadow = true;
+scene.add(road);
+
+// Cul-de-sac — full asphalt, no concrete ring
+const cdsGeo = new THREE.CircleGeometry(CDS_R, 64);
+const uvs = cdsGeo.attributes.uv;
+const positions = cdsGeo.attributes.position;
+for (let i = 0; i < positions.count; i++) {
+  uvs.setXY(i,
+    (positions.getX(i) / (CDS_R * 2)) + 0.5,
+    (positions.getY(i) / (CDS_R * 2)) + 0.5
+  );
+}
+cdsGeo.rotateX(-Math.PI / 2);
+cdsGeo.translate(ROAD_LEN, 0.01, 0);
+const cds = new THREE.Mesh(cdsGeo, matCds);
+cds.receiveShadow = true;
+scene.add(cds);
+
+// Concrete sidewalk slabs — ~68" squares, single file, thin weathered gaps
+// 3 variant groups: 50% plain, 25% weathered overlay, 25% cracked overlay
+const SLAB_SIZE = SW_W;
+const SLAB_GAP  = 0.1;
+const SLAB_STEP = SLAB_SIZE + SLAB_GAP;
+const SLAB_COUNT = Math.floor(ROAD_LEN / SLAB_STEP);
+const TOTAL_SLABS = SLAB_COUNT * 2;  // both sides
+
+const slabGeo = new THREE.PlaneGeometry(SLAB_SIZE, SLAB_SIZE);
+slabGeo.rotateX(-Math.PI / 2);
+
+// Assign each slab to a variant using seeded RNG
+const variantRng = seededRng(999);
+const slabVariants = Array.from({ length: TOTAL_SLABS }, () => {
+  const r = variantRng();
+  return r < 0.50 ? 0 : r < 0.75 ? 1 : 2;
+});
+
+// Bucket slabs by variant
+const buckets = [[], [], []];
+const dummy = new THREE.Object3D();
+let slabIdx = 0;
+for (let side = -1; side <= 1; side += 2) {
+  for (let i = 0; i < SLAB_COUNT; i++) {
+    const pos = [
+      SLAB_SIZE / 2 + i * SLAB_STEP,
+      CURB_H,
+      side * (ROAD_W / 2 + SW_W / 2)
+    ];
+    buckets[slabVariants[slabIdx]].push(pos);
+    slabIdx++;
+  }
+}
+
+// Create one InstancedMesh per variant
+buckets.forEach((positions, vi) => {
+  if (positions.length === 0) return;
+  const mesh = new THREE.InstancedMesh(slabGeo, slabMats[vi], positions.length);
+  mesh.receiveShadow = true;
+  positions.forEach((pos, i) => {
+    dummy.position.set(pos[0], pos[1], pos[2]);
+    dummy.updateMatrix();
+    mesh.setMatrixAt(i, dummy.matrix);
+  });
+  mesh.instanceMatrix.needsUpdate = true;
+  scene.add(mesh);
+});
+
+/* ── LIGHTING — Desert Sun from Southeast ── */
+
+const hemi = new THREE.HemisphereLight(0x87CEEB, 0xd4a76a, 0.5);
+scene.add(hemi);
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+
+const sun = new THREE.DirectionalLight(0xfff4e0, 1.8);
+sun.position.set(250, 400, -200);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.camera.left   = -50;
+sun.shadow.camera.right  = 450;
+sun.shadow.camera.top    = 150;
+sun.shadow.camera.bottom = -150;
+sun.shadow.camera.near   = 100;
+sun.shadow.camera.far    = 800;
+sun.shadow.bias = -0.001;
+scene.add(sun);
+
+/* ── ANIMATION ── */
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>
