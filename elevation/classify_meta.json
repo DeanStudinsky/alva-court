@@ -1,0 +1,36 @@
+{
+  "nc": 640,
+  "nr": 640,
+  "cellFt": 1.6404199475,
+  "rowOrder": "row0=south, col0=west",
+  "bin": {
+    "file": "classify.bin",
+    "bytesPerCell": 6,
+    "layout": "[labelA,labelB,nDSM,mfrac,rough,disc] uint8"
+  },
+  "labels": {
+    "0": "ground",
+    "1": "tree",
+    "2": "building"
+  },
+  "scaling": {
+    "nDSM_maxFt": 40,
+    "rough_maxFt": 6,
+    "mfrac": "0..1",
+    "disc": "0..1"
+  },
+  "thresholds": {
+    "multiReturnFrac": 0.2331763979735462,
+    "roughnessFt": 0.5689100623130798,
+    "groundFt": 6.56167979
+  },
+  "stats": {
+    "tallCells": 177485,
+    "agreementPct": 80.50877538946953,
+    "discMean": 0.3076780796637041
+  },
+  "addressCell": {
+    "col": 321,
+    "row": 321
+  }
+}

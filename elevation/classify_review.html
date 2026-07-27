@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alva Court — Classifier Cross-Check</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: #141414; color: #ddd; font: 13px/1.45 monospace; overflow: hidden; }
+  #app { display: flex; height: 100%; }
+  #panel { width: 300px; flex: none; padding: 14px; overflow-y: auto; background: #1c1c1c; border-right: 1px solid #333; }
+  #stage { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; }
+  canvas { image-rendering: pixelated; background: #000; box-shadow: 0 0 30px #000; }
+  h1 { font-size: 14px; color: #f0c040; margin-bottom: 4px; }
+  h2 { font-size: 11px; color: #7fb0ff; text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .row { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+  label { cursor: pointer; user-select: none; }
+  input[type=range] { width: 100%; }
+  .stat { color: #9a9; }
+  .stat b { color: #eee; }
+  .sw { display: inline-block; width: 11px; height: 11px; border-radius: 2px; vertical-align: middle; }
+  #hover { white-space: pre; color: #cfc; min-height: 92px; background: #111; padding: 6px; border: 1px solid #2a2a2a; border-radius: 4px; }
+  #hotspots { font-size: 12px; }
+  #hotspots div { padding: 2px 4px; cursor: default; border-radius: 3px; }
+  #hotspots div:hover { background: #262626; }
+  .muted { color: #777; }
+  b.key { color: #f0c040; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="panel">
+    <h1>Classifier Cross-Check</h1>
+    <div class="muted">Two independent LiDAR routes. Where they disagree = review.</div>
+
+    <h2>View</h2>
+    <div class="row"><input type="radio" name="mode" id="m_h" value="height"><label for="m_h">Height (nDSM)</label></div>
+    <div class="row"><input type="radio" name="mode" id="m_a" value="A" checked><label for="m_a">Source A — returns</label></div>
+    <div class="row"><input type="radio" name="mode" id="m_b" value="B"><label for="m_b">Source B — geometry</label></div>
+    <div class="row"><input type="radio" name="mode" id="m_g" value="agree"><label for="m_g">Agreement</label></div>
+    <div class="row"><input type="radio" name="mode" id="m_d" value="disc"><label for="m_d">Discrepancy heat</label></div>
+
+    <h2>Discrepancy highlight</h2>
+    <div class="row"><input type="checkbox" id="hl" checked><label for="hl">Highlight above threshold</label></div>
+    <div class="row"><span class="muted">thr</span><input type="range" id="thr" min="0.5" max="4" step="0.1" value="1.5"></div>
+    <div class="stat" id="thrLbl"></div>
+
+    <h2>Legend</h2>
+    <div><span class="sw" style="background:#3fae5a"></span> tree &nbsp; <span class="sw" style="background:#e08a30"></span> building &nbsp; <span class="sw" style="background:#444"></span> ground</div>
+    <div><span class="sw" style="background:#ffe000"></span> highlighted discrepancy</div>
+
+    <h2>Stats</h2>
+    <div class="stat" id="stats"></div>
+
+    <h2>Hotspots <span class="muted">(click-to-locate)</span></h2>
+    <div id="hotspots"></div>
+
+    <h2>Cell readout</h2>
+    <div id="hover">move over the map…</div>
+  </div>
+  <div id="stage"><canvas id="cv"></canvas></div>
+</div>
+
+<script type="module">
+const META = await fetch('classify_meta.json').then(r => r.json());
+const buf = new Uint8Array(await fetch('classify.bin').then(r => r.arrayBuffer()));
+const NC = META.nc, NR = META.nr, BPC = META.bin.bytesPerCell;
+const { nDSM_maxFt, rough_maxFt } = META.scaling;
+const cellFt = META.cellFt;
+const addr = META.addressCell;
+const discMean = META.stats.discMean;
+
+// per-cell accessors (row0 = south in the file)
+const A = i => buf[i*BPC], B = i => buf[i*BPC+1];
+const nd = i => buf[i*BPC+2] / 255 * nDSM_maxFt;
+const mf = i => buf[i*BPC+3] / 255;
+const rg = i => buf[i*BPC+4] / 255 * rough_maxFt;
+const dc = i => buf[i*BPC+5] / 255;
+
+// ---- offscreen 640x640 image, north-up (flip rows) ----
+const off = document.createElement('canvas'); off.width = NC; off.height = NR;
+const octx = off.getContext('2d');
+const img = octx.createImageData(NC, NR);
+
+const LAB = { 0:[68,68,68], 1:[63,174,90], 2:[224,138,48] };
+function px(mode, i) {
+  const h = buf[i*BPC+2]; // 0..255 height byte
+  const gray = 24 + (h/255)*150;
+  if (mode === 'height') return [gray, gray, gray];
+  const a = A(i), b = B(i);
+  if (a === 0) return [30,30,30];                 // ground stays dark in all label modes
+  if (mode === 'A') return LAB[a];
+  if (mode === 'B') return LAB[b];
+  if (mode === 'agree') return a === b ? [50,150,70] : [200,50,50];
+  if (mode === 'disc') { const t = dc(i); return [40 + t*215, 40 + (1-Math.abs(t-0.5)*2)*120, 200 - t*180]; }
+  return [gray,gray,gray];
+}
+
+let hotspots = [];
+function render() {
+  const mode = document.querySelector('input[name=mode]:checked').value;
+  const hlOn = document.getElementById('hl').checked;
+  const thrMul = parseFloat(document.getElementById('thr').value);
+  const thr = discMean * thrMul;
+  const d = img.data;
+  let hlCount = 0;
+  const hi = new Uint8Array(NC*NR); // highlighted mask (screen-space idx)
+  for (let sr = 0; sr < NR; sr++) {
+    const gridRow = NR - 1 - sr;                  // screen row0=north -> grid row0=south
+    for (let c = 0; c < NC; c++) {
+      const i = gridRow*NC + c;
+      const o = (sr*NC + c) * 4;
+      let [r,g,b] = px(mode, i);
+      if (hlOn && A(i) !== 0 && dc(i) >= thr) { r = 255; g = 224; b = 0; hi[sr*NC+c] = 1; hlCount++; }
+      d[o]=r; d[o+1]=g; d[o+2]=b; d[o+3]=255;
+    }
+  }
+  // address crosshair (screen space)
+  const aSr = NR - 1 - addr.row;
+  for (let k=-6;k<=6;k++){ mark(d, addr.col+k, aSr, [90,170,255]); mark(d, addr.col, aSr+k, [90,170,255]); }
+  octx.putImageData(img, 0, 0);
+  blit();
+  document.getElementById('thrLbl').innerHTML =
+    `thr = ${thrMul.toFixed(1)}× mean = <b>${thr.toFixed(3)}</b> &nbsp; highlighted: <b>${hlCount}</b> cells`;
+  if (hlOn) findHotspots(hi);
+}
+function mark(d, c, sr, col){ if(c<0||c>=NC||sr<0||sr>=NR)return; const o=(sr*NC+c)*4; d[o]=col[0];d[o+1]=col[1];d[o+2]=col[2]; }
+
+// ---- connected-component hotspots over highlighted cells ----
+function findHotspots(hi) {
+  const seen = new Uint8Array(NC*NR); const comps = [];
+  const stack = [];
+  for (let s0=0;s0<NC*NR;s0++){
+    if(!hi[s0]||seen[s0])continue;
+    let n=0,sc=0,sr=0; stack.length=0; stack.push(s0); seen[s0]=1;
+    while(stack.length){ const p=stack.pop(); const r=p/NC|0,c=p%NC; n++; sc+=c; sr+=r;
+      for(const [dr,dc2] of [[1,0],[-1,0],[0,1],[0,-1]]){ const rr=r+dr,cc=c+dc2; if(rr<0||rr>=NR||cc<0||cc>=NC)continue; const q=rr*NC+cc; if(hi[q]&&!seen[q]){seen[q]=1;stack.push(q);} } }
+    if(n>=4) comps.push({ n, sc: sc/n, sr: sr/n });
+  }
+  comps.sort((a,b)=>b.n-a.n);
+  hotspots = comps.slice(0,8);
+  const html = hotspots.map((h,idx)=>{
+    const gridRow = NR-1-Math.round(h.sr);
+    const eOff = ((Math.round(h.sc)-addr.col)*cellFt).toFixed(0);
+    const nOff = ((gridRow-addr.row)*cellFt).toFixed(0);
+    return `<div data-i="${idx}">#${idx+1} &nbsp;<b class="key">${h.n}</b> cells &nbsp;<span class="muted">E${eOff>=0?'+':''}${eOff} N${nOff>=0?'+':''}${nOff} ft</span></div>`;
+  }).join('') || '<span class="muted">no clusters ≥4 cells at this threshold</span>';
+  document.getElementById('hotspots').innerHTML = html;
+}
+
+// ---- scale-to-fit blit ----
+const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+let scale = 1, view = {x:0,y:0};
+function fit(){ const st=document.getElementById('stage'); const s=Math.floor(Math.min((st.clientWidth-24)/NC,(st.clientHeight-24)/NR)); scale=Math.max(1,s); cv.width=NC*scale; cv.height=NR*scale; blit(); }
+function blit(){ ctx.imageSmoothingEnabled=false; ctx.clearRect(0,0,cv.width,cv.height); ctx.drawImage(off,0,0,cv.width,cv.height); if(flash){ ctx.strokeStyle='#fff'; ctx.lineWidth=2; ctx.strokeRect(flash.x*scale-8,flash.y*scale-8,16,16); } }
+
+// ---- hover readout ----
+let flash=null;
+cv.addEventListener('mousemove', e=>{
+  const rect=cv.getBoundingClientRect();
+  const c=Math.floor((e.clientX-rect.left)/scale), sr=Math.floor((e.clientY-rect.top)/scale);
+  if(c<0||c>=NC||sr<0||sr>=NR)return;
+  const gridRow=NR-1-sr, i=gridRow*NC+c;
+  const eOff=((c-addr.col)*cellFt).toFixed(1), nOff=((gridRow-addr.row)*cellFt).toFixed(1);
+  const L=['ground','tree','building'];
+  document.getElementById('hover').textContent =
+`cell  col ${c}  row ${gridRow}
+offset  E ${eOff}  N ${nOff} ft
+nDSM    ${nd(i).toFixed(1)} ft
+mfrac   ${mf(i).toFixed(3)}   rough ${rg(i).toFixed(2)} ft
+A(returns)  ${L[A(i)]}
+B(geometry) ${L[B(i)]}
+disc    ${dc(i).toFixed(3)}${A(i)&&A(i)!==B(i)?'   ← DISAGREE':''}`;
+});
+document.getElementById('hotspots').addEventListener('click', e=>{
+  const el=e.target.closest('[data-i]'); if(!el)return; const h=hotspots[+el.dataset.i]; if(!h)return;
+  flash={x:h.sc,y:h.sr}; blit(); setTimeout(()=>{flash=null;blit();},1500);
+});
+
+document.querySelectorAll('input[name=mode]').forEach(el=>el.addEventListener('change',render));
+document.getElementById('hl').addEventListener('change',render);
+document.getElementById('thr').addEventListener('input',render);
+window.addEventListener('resize',()=>{fit();});
+
+document.getElementById('stats').innerHTML =
+  `tall cells: <b>${META.stats.tallCells.toLocaleString()}</b><br>` +
+  `A/B agreement: <b>${META.stats.agreementPct.toFixed(1)}%</b><br>` +
+  `mean discrepancy: <b>${discMean.toFixed(3)}</b><br>` +
+  `<span class="muted">thr multi-return ${META.thresholds.multiReturnFrac.toFixed(3)} · rough ${META.thresholds.roughnessFt.toFixed(2)} ft</span>`;
+
+fit(); render();
+</script>
+</body>
+</html>

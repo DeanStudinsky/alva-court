@@ -1,0 +1,3151 @@
+{
+  "source": "NAIP USDA_CONUS_PRIME exportImage, EPSG:26911, 640x640 @0.5m, pixel-aligned to terrain.bin",
+  "addressCell": {
+    "col": 321,
+    "row": 321
+  },
+  "cellFt": 1.6404199475,
+  "thrNDVI": 0.2,
+  "minFootprintCells": 150,
+  "count": 108,
+  "crossCheck": {
+    "tallCells": 177485,
+    "agree3of3": 104789,
+    "agree2of3": 72690,
+    "pctUnanimous": 59
+  },
+  "houses": [
+    {
+      "id": 0,
+      "cellCount": 547,
+      "footprint_sqft": 1472,
+      "centroidCell": {
+        "col": 324.8,
+        "row": 286.9
+      },
+      "centerLocalFt": {
+        "E": 6.2,
+        "N": -55.9
+      },
+      "bboxLocalFt": {
+        "E0": -18,
+        "E1": 27.9,
+        "N0": -78.7,
+        "N1": -34.4,
+        "widthFt": 47.6,
+        "depthFt": 45.9
+      },
+      "roofColor": "#a09890",
+      "roofRGB": [
+        160,
+        152,
+        144
+      ],
+      "meanNDVI": -0.047,
+      "streetView": null
+    },
+    {
+      "id": 1,
+      "cellCount": 882,
+      "footprint_sqft": 2373,
+      "centroidCell": {
+        "col": 283.9,
+        "row": 275.9
+      },
+      "centerLocalFt": {
+        "E": -60.9,
+        "N": -74
+      },
+      "bboxLocalFt": {
+        "E0": -88.6,
+        "E1": -41,
+        "N0": -106.6,
+        "N1": -37.7,
+        "widthFt": 49.2,
+        "depthFt": 70.5
+      },
+      "roofColor": "#c0b4a1",
+      "roofRGB": [
+        192,
+        180,
+        161
+      ],
+      "meanNDVI": -0.01,
+      "streetView": null
+    },
+    {
+      "id": 2,
+      "cellCount": 1016,
+      "footprint_sqft": 2734,
+      "centroidCell": {
+        "col": 367.5,
+        "row": 282.1
+      },
+      "centerLocalFt": {
+        "E": 76.3,
+        "N": -63.8
+      },
+      "bboxLocalFt": {
+        "E0": 47.6,
+        "E1": 105,
+        "N0": -90.2,
+        "N1": -31.2,
+        "widthFt": 59.1,
+        "depthFt": 60.7
+      },
+      "roofColor": "#b8b1a3",
+      "roofRGB": [
+        184,
+        177,
+        163
+      ],
+      "meanNDVI": -0.039,
+      "streetView": null
+    },
+    {
+      "id": 3,
+      "cellCount": 618,
+      "footprint_sqft": 1663,
+      "centroidCell": {
+        "col": 315.4,
+        "row": 381.4
+      },
+      "centerLocalFt": {
+        "E": -9.3,
+        "N": 99.2
+      },
+      "bboxLocalFt": {
+        "E0": -31.2,
+        "E1": 16.4,
+        "N0": 77.1,
+        "N1": 121.4,
+        "widthFt": 49.2,
+        "depthFt": 45.9
+      },
+      "roofColor": "#aa9190",
+      "roofRGB": [
+        170,
+        145,
+        144
+      ],
+      "meanNDVI": -0.026,
+      "streetView": null
+    },
+    {
+      "id": 4,
+      "cellCount": 701,
+      "footprint_sqft": 1886,
+      "centroidCell": {
+        "col": 353.6,
+        "row": 374.8
+      },
+      "centerLocalFt": {
+        "E": 53.4,
+        "N": 88.3
+      },
+      "bboxLocalFt": {
+        "E0": 24.6,
+        "E1": 83.7,
+        "N0": 70.5,
+        "N1": 111.5,
+        "widthFt": 60.7,
+        "depthFt": 42.7
+      },
+      "roofColor": "#c1b69d",
+      "roofRGB": [
+        193,
+        182,
+        157
+      ],
+      "meanNDVI": -0.012,
+      "streetView": null
+    },
+    {
+      "id": 5,
+      "cellCount": 1356,
+      "footprint_sqft": 3649,
+      "centroidCell": {
+        "col": 277.2,
+        "row": 383
+      },
+      "centerLocalFt": {
+        "E": -71.9,
+        "N": 101.7
+      },
+      "bboxLocalFt": {
+        "E0": -100.1,
+        "E1": -45.9,
+        "N0": 55.8,
+        "N1": 144.4,
+        "widthFt": 55.8,
+        "depthFt": 90.2
+      },
+      "roofColor": "#c1c0bc",
+      "roofRGB": [
+        193,
+        192,
+        188
+      ],
+      "meanNDVI": -0.016,
+      "streetView": null
+    },
+    {
+      "id": 6,
+      "cellCount": 491,
+      "footprint_sqft": 1321,
+      "centroidCell": {
+        "col": 408.9,
+        "row": 289.1
+      },
+      "centerLocalFt": {
+        "E": 144.2,
+        "N": -52.3
+      },
+      "bboxLocalFt": {
+        "E0": 119.8,
+        "E1": 165.7,
+        "N0": -70.5,
+        "N1": -32.8,
+        "widthFt": 47.6,
+        "depthFt": 39.4
+      },
+      "roofColor": "#8d8d8a",
+      "roofRGB": [
+        141,
+        141,
+        138
+      ],
+      "meanNDVI": -0.058,
+      "streetView": null
+    },
+    {
+      "id": 7,
+      "cellCount": 1157,
+      "footprint_sqft": 3113,
+      "centroidCell": {
+        "col": 394.2,
+        "row": 387.7
+      },
+      "centerLocalFt": {
+        "E": 120.1,
+        "N": 109.4
+      },
+      "bboxLocalFt": {
+        "E0": 93.5,
+        "E1": 146,
+        "N0": 72.2,
+        "N1": 142.7,
+        "widthFt": 54.1,
+        "depthFt": 72.2
+      },
+      "roofColor": "#b2bcba",
+      "roofRGB": [
+        178,
+        188,
+        186
+      ],
+      "meanNDVI": 0.023,
+      "streetView": null
+    },
+    {
+      "id": 8,
+      "cellCount": 232,
+      "footprint_sqft": 624,
+      "centroidCell": {
+        "col": 400.4,
+        "row": 243.8
+      },
+      "centerLocalFt": {
+        "E": 130.2,
+        "N": -126.6
+      },
+      "bboxLocalFt": {
+        "E0": 114.8,
+        "E1": 146,
+        "N0": -139.4,
+        "N1": -109.9,
+        "widthFt": 32.8,
+        "depthFt": 31.2
+      },
+      "roofColor": "#999b97",
+      "roofRGB": [
+        153,
+        155,
+        151
+      ],
+      "meanNDVI": -0.036,
+      "streetView": null
+    },
+    {
+      "id": 9,
+      "cellCount": 231,
+      "footprint_sqft": 622,
+      "centroidCell": {
+        "col": 342.5,
+        "row": 197.6
+      },
+      "centerLocalFt": {
+        "E": 35.3,
+        "N": -202.5
+      },
+      "bboxLocalFt": {
+        "E0": 29.5,
+        "E1": 42.7,
+        "N0": -228,
+        "N1": -172.2,
+        "widthFt": 14.8,
+        "depthFt": 57.4
+      },
+      "roofColor": "#b6b8b6",
+      "roofRGB": [
+        182,
+        184,
+        182
+      ],
+      "meanNDVI": 0,
+      "streetView": null
+    },
+    {
+      "id": 10,
+      "cellCount": 766,
+      "footprint_sqft": 2061,
+      "centroidCell": {
+        "col": 200.4,
+        "row": 381.2
+      },
+      "centerLocalFt": {
+        "E": -197.9,
+        "N": 98.8
+      },
+      "bboxLocalFt": {
+        "E0": -216.5,
+        "E1": -177.2,
+        "N0": 64,
+        "N1": 129.6,
+        "widthFt": 41,
+        "depthFt": 67.3
+      },
+      "roofColor": "#beaea2",
+      "roofRGB": [
+        190,
+        174,
+        162
+      ],
+      "meanNDVI": -0.024,
+      "streetView": null
+    },
+    {
+      "id": 11,
+      "cellCount": 639,
+      "footprint_sqft": 1720,
+      "centroidCell": {
+        "col": 441.2,
+        "row": 389.9
+      },
+      "centerLocalFt": {
+        "E": 197.1,
+        "N": 113
+      },
+      "bboxLocalFt": {
+        "E0": 167.3,
+        "E1": 226.4,
+        "N0": 93.5,
+        "N1": 137.8,
+        "widthFt": 60.7,
+        "depthFt": 45.9
+      },
+      "roofColor": "#c0bdb4",
+      "roofRGB": [
+        192,
+        189,
+        180
+      ],
+      "meanNDVI": -0.005,
+      "streetView": null
+    },
+    {
+      "id": 12,
+      "cellCount": 1278,
+      "footprint_sqft": 3439,
+      "centroidCell": {
+        "col": 366.1,
+        "row": 184.4
+      },
+      "centerLocalFt": {
+        "E": 74,
+        "N": -224
+      },
+      "bboxLocalFt": {
+        "E0": 47.6,
+        "E1": 101.7,
+        "N0": -267.4,
+        "N1": -185.4,
+        "widthFt": 55.8,
+        "depthFt": 83.7
+      },
+      "roofColor": "#c1c0bc",
+      "roofRGB": [
+        193,
+        192,
+        188
+      ],
+      "meanNDVI": -0.015,
+      "streetView": null
+    },
+    {
+      "id": 13,
+      "cellCount": 1493,
+      "footprint_sqft": 4018,
+      "centroidCell": {
+        "col": 463.7,
+        "row": 281.7
+      },
+      "centerLocalFt": {
+        "E": 234.1,
+        "N": -64.5
+      },
+      "bboxLocalFt": {
+        "E0": 195.2,
+        "E1": 275.6,
+        "N0": -106.6,
+        "N1": -19.7,
+        "widthFt": 82,
+        "depthFt": 88.6
+      },
+      "roofColor": "#a59b8c",
+      "roofRGB": [
+        165,
+        155,
+        140
+      ],
+      "meanNDVI": -0.096,
+      "streetView": null
+    },
+    {
+      "id": 14,
+      "cellCount": 499,
+      "footprint_sqft": 1343,
+      "centroidCell": {
+        "col": 325.6,
+        "row": 172.8
+      },
+      "centerLocalFt": {
+        "E": 7.5,
+        "N": -243.1
+      },
+      "bboxLocalFt": {
+        "E0": -16.4,
+        "E1": 31.2,
+        "N0": -265.7,
+        "N1": -218.2,
+        "widthFt": 49.2,
+        "depthFt": 49.2
+      },
+      "roofColor": "#888f94",
+      "roofRGB": [
+        136,
+        143,
+        148
+      ],
+      "meanNDVI": -0.054,
+      "streetView": null
+    },
+    {
+      "id": 15,
+      "cellCount": 684,
+      "footprint_sqft": 1841,
+      "centroidCell": {
+        "col": 282.2,
+        "row": 177.2
+      },
+      "centerLocalFt": {
+        "E": -63.7,
+        "N": -235.8
+      },
+      "bboxLocalFt": {
+        "E0": -91.9,
+        "E1": -41,
+        "N0": -267.4,
+        "N1": -208.3,
+        "widthFt": 52.5,
+        "depthFt": 60.7
+      },
+      "roofColor": "#a19e97",
+      "roofRGB": [
+        161,
+        158,
+        151
+      ],
+      "meanNDVI": -0.043,
+      "streetView": null
+    },
+    {
+      "id": 16,
+      "cellCount": 1383,
+      "footprint_sqft": 3722,
+      "centroidCell": {
+        "col": 168.8,
+        "row": 334.3
+      },
+      "centerLocalFt": {
+        "E": -249.7,
+        "N": 21.8
+      },
+      "bboxLocalFt": {
+        "E0": -280.5,
+        "E1": -216.5,
+        "N0": -14.8,
+        "N1": 59.1,
+        "widthFt": 65.6,
+        "depthFt": 75.5
+      },
+      "roofColor": "#bcb0a6",
+      "roofRGB": [
+        188,
+        176,
+        166
+      ],
+      "meanNDVI": -0.027,
+      "streetView": null
+    },
+    {
+      "id": 17,
+      "cellCount": 1439,
+      "footprint_sqft": 3872,
+      "centroidCell": {
+        "col": 170.3,
+        "row": 287.9
+      },
+      "centerLocalFt": {
+        "E": -247.2,
+        "N": -54.3
+      },
+      "bboxLocalFt": {
+        "E0": -280.5,
+        "E1": -214.9,
+        "N0": -91.9,
+        "N1": -18,
+        "widthFt": 67.3,
+        "depthFt": 75.5
+      },
+      "roofColor": "#bcafa4",
+      "roofRGB": [
+        188,
+        175,
+        164
+      ],
+      "meanNDVI": -0.027,
+      "streetView": null
+    },
+    {
+      "id": 18,
+      "cellCount": 1084,
+      "footprint_sqft": 2917,
+      "centroidCell": {
+        "col": 314.7,
+        "row": 476.2
+      },
+      "centerLocalFt": {
+        "E": -10.3,
+        "N": 254.7
+      },
+      "bboxLocalFt": {
+        "E0": -37.7,
+        "E1": 21.3,
+        "N0": 224.7,
+        "N1": 290.4,
+        "widthFt": 60.7,
+        "depthFt": 67.3
+      },
+      "roofColor": "#b9a28f",
+      "roofRGB": [
+        185,
+        162,
+        143
+      ],
+      "meanNDVI": -0.025,
+      "streetView": null
+    },
+    {
+      "id": 19,
+      "cellCount": 1079,
+      "footprint_sqft": 2904,
+      "centroidCell": {
+        "col": 351.6,
+        "row": 473.7
+      },
+      "centerLocalFt": {
+        "E": 50.2,
+        "N": 250.5
+      },
+      "bboxLocalFt": {
+        "E0": 26.2,
+        "E1": 78.7,
+        "N0": 219.8,
+        "N1": 290.4,
+        "widthFt": 54.1,
+        "depthFt": 72.2
+      },
+      "roofColor": "#c2bcad",
+      "roofRGB": [
+        194,
+        188,
+        173
+      ],
+      "meanNDVI": -0.009,
+      "streetView": null
+    },
+    {
+      "id": 20,
+      "cellCount": 910,
+      "footprint_sqft": 2449,
+      "centroidCell": {
+        "col": 278.6,
+        "row": 477.2
+      },
+      "centerLocalFt": {
+        "E": -69.5,
+        "N": 256.3
+      },
+      "bboxLocalFt": {
+        "E0": -95.1,
+        "E1": -47.6,
+        "N0": 228,
+        "N1": 290.4,
+        "widthFt": 49.2,
+        "depthFt": 64
+      },
+      "roofColor": "#c0a88d",
+      "roofRGB": [
+        192,
+        168,
+        141
+      ],
+      "meanNDVI": -0.017,
+      "streetView": null
+    },
+    {
+      "id": 21,
+      "cellCount": 1459,
+      "footprint_sqft": 3926,
+      "centroidCell": {
+        "col": 167.6,
+        "row": 382.3
+      },
+      "centerLocalFt": {
+        "E": -251.7,
+        "N": 100.6
+      },
+      "bboxLocalFt": {
+        "E0": -285.4,
+        "E1": -219.8,
+        "N0": 62.3,
+        "N1": 137.8,
+        "widthFt": 67.3,
+        "depthFt": 77.1
+      },
+      "roofColor": "#bcaea3",
+      "roofRGB": [
+        188,
+        174,
+        163
+      ],
+      "meanNDVI": -0.028,
+      "streetView": null
+    },
+    {
+      "id": 22,
+      "cellCount": 793,
+      "footprint_sqft": 2134,
+      "centroidCell": {
+        "col": 411.6,
+        "row": 178.2
+      },
+      "centerLocalFt": {
+        "E": 148.6,
+        "N": -234.2
+      },
+      "bboxLocalFt": {
+        "E0": 123,
+        "E1": 175.5,
+        "N0": -259.2,
+        "N1": -211.6,
+        "widthFt": 54.1,
+        "depthFt": 49.2
+      },
+      "roofColor": "#a8a9a3",
+      "roofRGB": [
+        168,
+        169,
+        163
+      ],
+      "meanNDVI": -0.042,
+      "streetView": null
+    },
+    {
+      "id": 23,
+      "cellCount": 1339,
+      "footprint_sqft": 3603,
+      "centroidCell": {
+        "col": 172.2,
+        "row": 239
+      },
+      "centerLocalFt": {
+        "E": -244.2,
+        "N": -134.5
+      },
+      "bboxLocalFt": {
+        "E0": -278.9,
+        "E1": -213.3,
+        "N0": -170.6,
+        "N1": -95.1,
+        "widthFt": 67.3,
+        "depthFt": 77.1
+      },
+      "roofColor": "#bcb0a4",
+      "roofRGB": [
+        188,
+        176,
+        164
+      ],
+      "meanNDVI": -0.027,
+      "streetView": null
+    },
+    {
+      "id": 24,
+      "cellCount": 1210,
+      "footprint_sqft": 3256,
+      "centroidCell": {
+        "col": 396.4,
+        "row": 475.6
+      },
+      "centerLocalFt": {
+        "E": 123.7,
+        "N": 253.6
+      },
+      "bboxLocalFt": {
+        "E0": 96.8,
+        "E1": 150.9,
+        "N0": 214.9,
+        "N1": 292,
+        "widthFt": 55.8,
+        "depthFt": 78.7
+      },
+      "roofColor": "#a7b5b3",
+      "roofRGB": [
+        167,
+        181,
+        179
+      ],
+      "meanNDVI": 0.013,
+      "streetView": null
+    },
+    {
+      "id": 25,
+      "cellCount": 600,
+      "footprint_sqft": 1615,
+      "centroidCell": {
+        "col": 489.6,
+        "row": 375.4
+      },
+      "centerLocalFt": {
+        "E": 276.5,
+        "N": 89.3
+      },
+      "bboxLocalFt": {
+        "E0": 246.1,
+        "E1": 301.8,
+        "N0": 55.8,
+        "N1": 126.3,
+        "widthFt": 57.4,
+        "depthFt": 72.2
+      },
+      "roofColor": "#a59c91",
+      "roofRGB": [
+        165,
+        156,
+        145
+      ],
+      "meanNDVI": -0.054,
+      "streetView": null
+    },
+    {
+      "id": 26,
+      "cellCount": 606,
+      "footprint_sqft": 1631,
+      "centroidCell": {
+        "col": 458.8,
+        "row": 187.9
+      },
+      "centerLocalFt": {
+        "E": 226,
+        "N": -218.4
+      },
+      "bboxLocalFt": {
+        "E0": 201.8,
+        "E1": 255.9,
+        "N0": -247.7,
+        "N1": -191.9,
+        "widthFt": 55.8,
+        "depthFt": 57.4
+      },
+      "roofColor": "#b4b6af",
+      "roofRGB": [
+        180,
+        182,
+        175
+      ],
+      "meanNDVI": -0.039,
+      "streetView": null
+    },
+    {
+      "id": 27,
+      "cellCount": 1415,
+      "footprint_sqft": 3808,
+      "centroidCell": {
+        "col": 165.6,
+        "row": 436.5
+      },
+      "centerLocalFt": {
+        "E": -254.9,
+        "N": 189.5
+      },
+      "bboxLocalFt": {
+        "E0": -287.1,
+        "E1": -219.8,
+        "N0": 150.9,
+        "N1": 223.1,
+        "widthFt": 68.9,
+        "depthFt": 73.8
+      },
+      "roofColor": "#bbaea4",
+      "roofRGB": [
+        187,
+        174,
+        164
+      ],
+      "meanNDVI": -0.026,
+      "streetView": null
+    },
+    {
+      "id": 28,
+      "cellCount": 1197,
+      "footprint_sqft": 3221,
+      "centroidCell": {
+        "col": 436.8,
+        "row": 476.9
+      },
+      "centerLocalFt": {
+        "E": 190,
+        "N": 255.8
+      },
+      "bboxLocalFt": {
+        "E0": 164,
+        "E1": 218.2,
+        "N0": 221.5,
+        "N1": 293.6,
+        "widthFt": 55.8,
+        "depthFt": 73.8
+      },
+      "roofColor": "#abb8b6",
+      "roofRGB": [
+        171,
+        184,
+        182
+      ],
+      "meanNDVI": 0.023,
+      "streetView": null
+    },
+    {
+      "id": 29,
+      "cellCount": 1494,
+      "footprint_sqft": 4020,
+      "centroidCell": {
+        "col": 185.6,
+        "row": 181.5
+      },
+      "centerLocalFt": {
+        "E": -222.2,
+        "N": -228.8
+      },
+      "bboxLocalFt": {
+        "E0": -267.4,
+        "E1": -177.2,
+        "N0": -255.9,
+        "N1": -201.8,
+        "widthFt": 91.9,
+        "depthFt": 55.8
+      },
+      "roofColor": "#bdb1a0",
+      "roofRGB": [
+        189,
+        177,
+        160
+      ],
+      "meanNDVI": -0.023,
+      "streetView": null
+    },
+    {
+      "id": 30,
+      "cellCount": 1441,
+      "footprint_sqft": 3878,
+      "centroidCell": {
+        "col": 515.9,
+        "row": 323
+      },
+      "centerLocalFt": {
+        "E": 319.7,
+        "N": 3.3
+      },
+      "bboxLocalFt": {
+        "E0": 275.6,
+        "E1": 362.5,
+        "N0": -26.2,
+        "N1": 34.4,
+        "widthFt": 88.6,
+        "depthFt": 62.3
+      },
+      "roofColor": "#c1bcb2",
+      "roofRGB": [
+        193,
+        188,
+        178
+      ],
+      "meanNDVI": -0.012,
+      "streetView": null
+    },
+    {
+      "id": 31,
+      "cellCount": 720,
+      "footprint_sqft": 1938,
+      "centroidCell": {
+        "col": 197.7,
+        "row": 483.2
+      },
+      "centerLocalFt": {
+        "E": -202.3,
+        "N": 266.1
+      },
+      "bboxLocalFt": {
+        "E0": -221.5,
+        "E1": -182.1,
+        "N0": 232.9,
+        "N1": 296.9,
+        "widthFt": 41,
+        "depthFt": 65.6
+      },
+      "roofColor": "#bdada2",
+      "roofRGB": [
+        189,
+        173,
+        162
+      ],
+      "meanNDVI": -0.023,
+      "streetView": null
+    },
+    {
+      "id": 32,
+      "cellCount": 700,
+      "footprint_sqft": 1884,
+      "centroidCell": {
+        "col": 205.8,
+        "row": 144.3
+      },
+      "centerLocalFt": {
+        "E": -189,
+        "N": -289.9
+      },
+      "bboxLocalFt": {
+        "E0": -210,
+        "E1": -169,
+        "N0": -329.7,
+        "N1": -260.8,
+        "widthFt": 42.7,
+        "depthFt": 70.5
+      },
+      "roofColor": "#c1beb3",
+      "roofRGB": [
+        193,
+        190,
+        179
+      ],
+      "meanNDVI": -0.008,
+      "streetView": null
+    },
+    {
+      "id": 33,
+      "cellCount": 530,
+      "footprint_sqft": 1426,
+      "centroidCell": {
+        "col": 499.8,
+        "row": 206.4
+      },
+      "centerLocalFt": {
+        "E": 293.4,
+        "N": -188
+      },
+      "bboxLocalFt": {
+        "E0": 267.4,
+        "E1": 319.9,
+        "N0": -210,
+        "N1": -167.3,
+        "widthFt": 54.1,
+        "depthFt": 44.3
+      },
+      "roofColor": "#9d9b95",
+      "roofRGB": [
+        157,
+        155,
+        149
+      ],
+      "meanNDVI": -0.049,
+      "streetView": null
+    },
+    {
+      "id": 34,
+      "cellCount": 1181,
+      "footprint_sqft": 3178,
+      "centroidCell": {
+        "col": 474.5,
+        "row": 475.2
+      },
+      "centerLocalFt": {
+        "E": 251.8,
+        "N": 253
+      },
+      "bboxLocalFt": {
+        "E0": 221.5,
+        "E1": 277.2,
+        "N0": 200.1,
+        "N1": 292,
+        "widthFt": 57.4,
+        "depthFt": 93.5
+      },
+      "roofColor": "#bfbdb8",
+      "roofRGB": [
+        191,
+        189,
+        184
+      ],
+      "meanNDVI": -0.016,
+      "streetView": null
+    },
+    {
+      "id": 35,
+      "cellCount": 1431,
+      "footprint_sqft": 3851,
+      "centroidCell": {
+        "col": 164.8,
+        "row": 484.4
+      },
+      "centerLocalFt": {
+        "E": -256.2,
+        "N": 268.1
+      },
+      "bboxLocalFt": {
+        "E0": -288.7,
+        "E1": -224.7,
+        "N0": 231.3,
+        "N1": 305.1,
+        "widthFt": 65.6,
+        "depthFt": 75.5
+      },
+      "roofColor": "#bcb0a5",
+      "roofRGB": [
+        188,
+        176,
+        165
+      ],
+      "meanNDVI": -0.027,
+      "streetView": null
+    },
+    {
+      "id": 36,
+      "cellCount": 1432,
+      "footprint_sqft": 3853,
+      "centroidCell": {
+        "col": 94.5,
+        "row": 290.7
+      },
+      "centerLocalFt": {
+        "E": -371.6,
+        "N": -49.8
+      },
+      "bboxLocalFt": {
+        "E0": -426.5,
+        "E1": -329.7,
+        "N0": -77.1,
+        "N1": -23,
+        "widthFt": 98.4,
+        "depthFt": 55.8
+      },
+      "roofColor": "#9d9e9d",
+      "roofRGB": [
+        157,
+        158,
+        157
+      ],
+      "meanNDVI": -0.051,
+      "streetView": null
+    },
+    {
+      "id": 37,
+      "cellCount": 683,
+      "footprint_sqft": 1838,
+      "centroidCell": {
+        "col": 529.3,
+        "row": 224.8
+      },
+      "centerLocalFt": {
+        "E": 341.6,
+        "N": -157.9
+      },
+      "bboxLocalFt": {
+        "E0": 315,
+        "E1": 367.5,
+        "N0": -190.3,
+        "N1": -126.3,
+        "widthFt": 54.1,
+        "depthFt": 65.6
+      },
+      "roofColor": "#819094",
+      "roofRGB": [
+        129,
+        144,
+        148
+      ],
+      "meanNDVI": -0.078,
+      "streetView": null
+    },
+    {
+      "id": 38,
+      "cellCount": 1347,
+      "footprint_sqft": 3625,
+      "centroidCell": {
+        "col": 101.6,
+        "row": 388.5
+      },
+      "centerLocalFt": {
+        "E": -359.9,
+        "N": 110.8
+      },
+      "bboxLocalFt": {
+        "E0": -387.1,
+        "E1": -333,
+        "N0": 68.9,
+        "N1": 152.6,
+        "widthFt": 55.8,
+        "depthFt": 85.3
+      },
+      "roofColor": "#baa693",
+      "roofRGB": [
+        186,
+        166,
+        147
+      ],
+      "meanNDVI": -0.034,
+      "streetView": null
+    },
+    {
+      "id": 39,
+      "cellCount": 224,
+      "footprint_sqft": 603,
+      "centroidCell": {
+        "col": 111.5,
+        "row": 428.3
+      },
+      "centerLocalFt": {
+        "E": -343.7,
+        "N": 176
+      },
+      "bboxLocalFt": {
+        "E0": -357.6,
+        "E1": -329.7,
+        "N0": 164,
+        "N1": 187,
+        "widthFt": 29.5,
+        "depthFt": 24.6
+      },
+      "roofColor": "#a1a19e",
+      "roofRGB": [
+        161,
+        161,
+        158
+      ],
+      "meanNDVI": -0.055,
+      "streetView": null
+    },
+    {
+      "id": 40,
+      "cellCount": 923,
+      "footprint_sqft": 2484,
+      "centroidCell": {
+        "col": 163.4,
+        "row": 144.8
+      },
+      "centerLocalFt": {
+        "E": -258.5,
+        "N": -289
+      },
+      "bboxLocalFt": {
+        "E0": -282.2,
+        "E1": -226.4,
+        "N0": -316.6,
+        "N1": -262.5,
+        "widthFt": 57.4,
+        "depthFt": 55.8
+      },
+      "roofColor": "#c1bfb4",
+      "roofRGB": [
+        193,
+        191,
+        180
+      ],
+      "meanNDVI": -0.012,
+      "streetView": null
+    },
+    {
+      "id": 41,
+      "cellCount": 1799,
+      "footprint_sqft": 4841,
+      "centroidCell": {
+        "col": 84,
+        "row": 327.1
+      },
+      "centerLocalFt": {
+        "E": -388.7,
+        "N": 10.1
+      },
+      "bboxLocalFt": {
+        "E0": -438,
+        "E1": -339.6,
+        "N0": -23,
+        "N1": 36.1,
+        "widthFt": 100.1,
+        "depthFt": 60.7
+      },
+      "roofColor": "#b7aba2",
+      "roofRGB": [
+        183,
+        171,
+        162
+      ],
+      "meanNDVI": -0.035,
+      "streetView": null
+    },
+    {
+      "id": 42,
+      "cellCount": 1055,
+      "footprint_sqft": 2839,
+      "centroidCell": {
+        "col": 285.1,
+        "row": 80
+      },
+      "centerLocalFt": {
+        "E": -58.9,
+        "N": -395.4
+      },
+      "bboxLocalFt": {
+        "E0": -86.9,
+        "E1": -26.2,
+        "N0": -424.9,
+        "N1": -367.5,
+        "widthFt": 62.3,
+        "depthFt": 59.1
+      },
+      "roofColor": "#b4b5af",
+      "roofRGB": [
+        180,
+        181,
+        175
+      ],
+      "meanNDVI": -0.039,
+      "streetView": null
+    },
+    {
+      "id": 43,
+      "cellCount": 1285,
+      "footprint_sqft": 3458,
+      "centroidCell": {
+        "col": 328.1,
+        "row": 75.7
+      },
+      "centerLocalFt": {
+        "E": 11.7,
+        "N": -402.5
+      },
+      "bboxLocalFt": {
+        "E0": -21.3,
+        "E1": 39.4,
+        "N0": -438,
+        "N1": -364.2,
+        "widthFt": 62.3,
+        "depthFt": 75.5
+      },
+      "roofColor": "#b3958c",
+      "roofRGB": [
+        179,
+        149,
+        140
+      ],
+      "meanNDVI": -0.025,
+      "streetView": null
+    },
+    {
+      "id": 44,
+      "cellCount": 1608,
+      "footprint_sqft": 4327,
+      "centroidCell": {
+        "col": 83,
+        "row": 254
+      },
+      "centerLocalFt": {
+        "E": -390.5,
+        "N": -109.9
+      },
+      "bboxLocalFt": {
+        "E0": -434.7,
+        "E1": -347.8,
+        "N0": -137.8,
+        "N1": -83.7,
+        "widthFt": 88.6,
+        "depthFt": 55.8
+      },
+      "roofColor": "#c1bbad",
+      "roofRGB": [
+        193,
+        187,
+        173
+      ],
+      "meanNDVI": -0.012,
+      "streetView": null
+    },
+    {
+      "id": 45,
+      "cellCount": 1497,
+      "footprint_sqft": 4028,
+      "centroidCell": {
+        "col": 189.9,
+        "row": 108.6
+      },
+      "centerLocalFt": {
+        "E": -215.1,
+        "N": -348.4
+      },
+      "bboxLocalFt": {
+        "E0": -255.9,
+        "E1": -172.2,
+        "N0": -374,
+        "N1": -319.9,
+        "widthFt": 85.3,
+        "depthFt": 55.8
+      },
+      "roofColor": "#bab3a8",
+      "roofRGB": [
+        186,
+        179,
+        168
+      ],
+      "meanNDVI": -0.021,
+      "streetView": null
+    },
+    {
+      "id": 46,
+      "cellCount": 554,
+      "footprint_sqft": 1491,
+      "centroidCell": {
+        "col": 511,
+        "row": 483.2
+      },
+      "centerLocalFt": {
+        "E": 311.7,
+        "N": 266.1
+      },
+      "bboxLocalFt": {
+        "E0": 287.1,
+        "E1": 337.9,
+        "N0": 244.4,
+        "N1": 287.1,
+        "widthFt": 52.5,
+        "depthFt": 44.3
+      },
+      "roofColor": "#b3b5af",
+      "roofRGB": [
+        179,
+        181,
+        175
+      ],
+      "meanNDVI": -0.027,
+      "streetView": null
+    },
+    {
+      "id": 47,
+      "cellCount": 1168,
+      "footprint_sqft": 3143,
+      "centroidCell": {
+        "col": 370.7,
+        "row": 74.9
+      },
+      "centerLocalFt": {
+        "E": 81.6,
+        "N": -403.8
+      },
+      "bboxLocalFt": {
+        "E0": 52.5,
+        "E1": 105,
+        "N0": -441.3,
+        "N1": -362.5,
+        "widthFt": 54.1,
+        "depthFt": 80.4
+      },
+      "roofColor": "#b6b7b1",
+      "roofRGB": [
+        182,
+        183,
+        177
+      ],
+      "meanNDVI": -0.034,
+      "streetView": null
+    },
+    {
+      "id": 48,
+      "cellCount": 777,
+      "footprint_sqft": 2091,
+      "centroidCell": {
+        "col": 359.6,
+        "row": 572.6
+      },
+      "centerLocalFt": {
+        "E": 63.3,
+        "N": 412.7
+      },
+      "bboxLocalFt": {
+        "E0": 31.2,
+        "E1": 93.5,
+        "N0": 390.4,
+        "N1": 433.1,
+        "widthFt": 64,
+        "depthFt": 44.3
+      },
+      "roofColor": "#ae9c94",
+      "roofRGB": [
+        174,
+        156,
+        148
+      ],
+      "meanNDVI": -0.043,
+      "streetView": null
+    },
+    {
+      "id": 49,
+      "cellCount": 823,
+      "footprint_sqft": 2215,
+      "centroidCell": {
+        "col": 271.9,
+        "row": 571.8
+      },
+      "centerLocalFt": {
+        "E": -80.6,
+        "N": 411.4
+      },
+      "bboxLocalFt": {
+        "E0": -106.6,
+        "E1": -49.2,
+        "N0": 388.8,
+        "N1": 436.4,
+        "widthFt": 59.1,
+        "depthFt": 49.2
+      },
+      "roofColor": "#bca498",
+      "roofRGB": [
+        188,
+        164,
+        152
+      ],
+      "meanNDVI": -0.023,
+      "streetView": null
+    },
+    {
+      "id": 50,
+      "cellCount": 1615,
+      "footprint_sqft": 4346,
+      "centroidCell": {
+        "col": 85.7,
+        "row": 217.9
+      },
+      "centerLocalFt": {
+        "E": -385.9,
+        "N": -169.1
+      },
+      "bboxLocalFt": {
+        "E0": -431.4,
+        "E1": -342.8,
+        "N0": -196.9,
+        "N1": -142.7,
+        "widthFt": 90.2,
+        "depthFt": 55.8
+      },
+      "roofColor": "#b5aea7",
+      "roofRGB": [
+        181,
+        174,
+        167
+      ],
+      "meanNDVI": -0.036,
+      "streetView": null
+    },
+    {
+      "id": 51,
+      "cellCount": 537,
+      "footprint_sqft": 1445,
+      "centroidCell": {
+        "col": 564.1,
+        "row": 236.6
+      },
+      "centerLocalFt": {
+        "E": 398.8,
+        "N": -138.4
+      },
+      "bboxLocalFt": {
+        "E0": 372.4,
+        "E1": 428.1,
+        "N0": -160.8,
+        "N1": -116.5,
+        "widthFt": 57.4,
+        "depthFt": 45.9
+      },
+      "roofColor": "#929391",
+      "roofRGB": [
+        146,
+        147,
+        145
+      ],
+      "meanNDVI": -0.059,
+      "streetView": null
+    },
+    {
+      "id": 52,
+      "cellCount": 1016,
+      "footprint_sqft": 2734,
+      "centroidCell": {
+        "col": 419.7,
+        "row": 82.6
+      },
+      "centerLocalFt": {
+        "E": 161.9,
+        "N": -391
+      },
+      "bboxLocalFt": {
+        "E0": 136.2,
+        "E1": 185.4,
+        "N0": -423.2,
+        "N1": -354.3,
+        "widthFt": 50.9,
+        "depthFt": 70.5
+      },
+      "roofColor": "#8c9290",
+      "roofRGB": [
+        140,
+        146,
+        144
+      ],
+      "meanNDVI": 0.002,
+      "streetView": null
+    },
+    {
+      "id": 53,
+      "cellCount": 1176,
+      "footprint_sqft": 3165,
+      "centroidCell": {
+        "col": 313,
+        "row": 579.9
+      },
+      "centerLocalFt": {
+        "E": -13.2,
+        "N": 424.7
+      },
+      "bboxLocalFt": {
+        "E0": -41,
+        "E1": 18,
+        "N0": 388.8,
+        "N1": 459.3,
+        "widthFt": 60.7,
+        "depthFt": 72.2
+      },
+      "roofColor": "#c3c1bd",
+      "roofRGB": [
+        195,
+        193,
+        189
+      ],
+      "meanNDVI": -0.004,
+      "streetView": null
+    },
+    {
+      "id": 54,
+      "cellCount": 1015,
+      "footprint_sqft": 2731,
+      "centroidCell": {
+        "col": 62.8,
+        "row": 374.3
+      },
+      "centerLocalFt": {
+        "E": -423.6,
+        "N": 87.5
+      },
+      "bboxLocalFt": {
+        "E0": -444.6,
+        "E1": -401.9,
+        "N0": 44.3,
+        "N1": 124.7,
+        "widthFt": 44.3,
+        "depthFt": 82
+      },
+      "roofColor": "#b8a491",
+      "roofRGB": [
+        184,
+        164,
+        145
+      ],
+      "meanNDVI": -0.027,
+      "streetView": null
+    },
+    {
+      "id": 55,
+      "cellCount": 922,
+      "footprint_sqft": 2481,
+      "centroidCell": {
+        "col": 402.7,
+        "row": 575.1
+      },
+      "centerLocalFt": {
+        "E": 134.1,
+        "N": 416.9
+      },
+      "bboxLocalFt": {
+        "E0": 103.3,
+        "E1": 164,
+        "N0": 390.4,
+        "N1": 441.3,
+        "widthFt": 62.3,
+        "depthFt": 52.5
+      },
+      "roofColor": "#b49f9d",
+      "roofRGB": [
+        180,
+        159,
+        157
+      ],
+      "meanNDVI": -0.011,
+      "streetView": null
+    },
+    {
+      "id": 56,
+      "cellCount": 1365,
+      "footprint_sqft": 3673,
+      "centroidCell": {
+        "col": 548.5,
+        "row": 464.8
+      },
+      "centerLocalFt": {
+        "E": 373.3,
+        "N": 235.9
+      },
+      "bboxLocalFt": {
+        "E0": 346.1,
+        "E1": 403.5,
+        "N0": 175.5,
+        "N1": 278.9,
+        "widthFt": 59.1,
+        "depthFt": 105
+      },
+      "roofColor": "#bea48d",
+      "roofRGB": [
+        190,
+        164,
+        141
+      ],
+      "meanNDVI": -0.018,
+      "streetView": null
+    },
+    {
+      "id": 57,
+      "cellCount": 1052,
+      "footprint_sqft": 2831,
+      "centroidCell": {
+        "col": 461.2,
+        "row": 90.5
+      },
+      "centerLocalFt": {
+        "E": 230,
+        "N": -378
+      },
+      "bboxLocalFt": {
+        "E0": 201.8,
+        "E1": 257.5,
+        "N0": -413.4,
+        "N1": -339.6,
+        "widthFt": 57.4,
+        "depthFt": 75.5
+      },
+      "roofColor": "#8b8f8a",
+      "roofRGB": [
+        139,
+        143,
+        138
+      ],
+      "meanNDVI": -0.06,
+      "streetView": null
+    },
+    {
+      "id": 58,
+      "cellCount": 901,
+      "footprint_sqft": 2425,
+      "centroidCell": {
+        "col": 95.5,
+        "row": 473.7
+      },
+      "centerLocalFt": {
+        "E": -369.9,
+        "N": 250.5
+      },
+      "bboxLocalFt": {
+        "E0": -398.6,
+        "E1": -346.1,
+        "N0": 223.1,
+        "N1": 278.9,
+        "widthFt": 54.1,
+        "depthFt": 57.4
+      },
+      "roofColor": "#c2c1bd",
+      "roofRGB": [
+        194,
+        193,
+        189
+      ],
+      "meanNDVI": -0.008,
+      "streetView": null
+    },
+    {
+      "id": 59,
+      "cellCount": 357,
+      "footprint_sqft": 961,
+      "centroidCell": {
+        "col": 209.1,
+        "row": 71.4
+      },
+      "centerLocalFt": {
+        "E": -183.6,
+        "N": -409.4
+      },
+      "bboxLocalFt": {
+        "E0": -196.9,
+        "E1": -167.3,
+        "N0": -433.1,
+        "N1": -383.9,
+        "widthFt": 31.2,
+        "depthFt": 50.9
+      },
+      "roofColor": "#bba28c",
+      "roofRGB": [
+        187,
+        162,
+        140
+      ],
+      "meanNDVI": -0.023,
+      "streetView": null
+    },
+    {
+      "id": 60,
+      "cellCount": 1249,
+      "footprint_sqft": 3361,
+      "centroidCell": {
+        "col": 72.5,
+        "row": 436.9
+      },
+      "centerLocalFt": {
+        "E": -407.6,
+        "N": 190.1
+      },
+      "bboxLocalFt": {
+        "E0": -447.8,
+        "E1": -362.5,
+        "N0": 165.7,
+        "N1": 214.9,
+        "widthFt": 86.9,
+        "depthFt": 50.9
+      },
+      "roofColor": "#a1a19d",
+      "roofRGB": [
+        161,
+        161,
+        157
+      ],
+      "meanNDVI": -0.043,
+      "streetView": null
+    },
+    {
+      "id": 61,
+      "cellCount": 1518,
+      "footprint_sqft": 4085,
+      "centroidCell": {
+        "col": 83.8,
+        "row": 180.6
+      },
+      "centerLocalFt": {
+        "E": -389.1,
+        "N": -230.3
+      },
+      "bboxLocalFt": {
+        "E0": -433.1,
+        "E1": -346.1,
+        "N0": -260.8,
+        "N1": -205.1,
+        "widthFt": 88.6,
+        "depthFt": 57.4
+      },
+      "roofColor": "#bdb09f",
+      "roofRGB": [
+        189,
+        176,
+        159
+      ],
+      "meanNDVI": -0.023,
+      "streetView": null
+    },
+    {
+      "id": 62,
+      "cellCount": 246,
+      "footprint_sqft": 662,
+      "centroidCell": {
+        "col": 575.7,
+        "row": 210.1
+      },
+      "centerLocalFt": {
+        "E": 417.8,
+        "N": -181.9
+      },
+      "bboxLocalFt": {
+        "E0": 401.9,
+        "E1": 434.7,
+        "N0": -196.9,
+        "N1": -167.3,
+        "widthFt": 34.4,
+        "depthFt": 31.2
+      },
+      "roofColor": "#60774c",
+      "roofRGB": [
+        96,
+        119,
+        76
+      ],
+      "meanNDVI": 0.193,
+      "streetView": null
+    },
+    {
+      "id": 63,
+      "cellCount": 858,
+      "footprint_sqft": 2309,
+      "centroidCell": {
+        "col": 437.6,
+        "row": 575.6
+      },
+      "centerLocalFt": {
+        "E": 191.2,
+        "N": 417.6
+      },
+      "bboxLocalFt": {
+        "E0": 170.6,
+        "E1": 216.5,
+        "N0": 385.5,
+        "N1": 444.6,
+        "widthFt": 47.6,
+        "depthFt": 60.7
+      },
+      "roofColor": "#b29a96",
+      "roofRGB": [
+        178,
+        154,
+        150
+      ],
+      "meanNDVI": -0.012,
+      "streetView": null
+    },
+    {
+      "id": 64,
+      "cellCount": 1595,
+      "footprint_sqft": 4292,
+      "centroidCell": {
+        "col": 177.1,
+        "row": 565.1
+      },
+      "centerLocalFt": {
+        "E": -236.1,
+        "N": 400.5
+      },
+      "bboxLocalFt": {
+        "E0": -278.9,
+        "E1": -191.9,
+        "N0": 374,
+        "N1": 426.5,
+        "widthFt": 88.6,
+        "depthFt": 54.1
+      },
+      "roofColor": "#a6a39e",
+      "roofRGB": [
+        166,
+        163,
+        158
+      ],
+      "meanNDVI": -0.038,
+      "streetView": null
+    },
+    {
+      "id": 65,
+      "cellCount": 956,
+      "footprint_sqft": 2573,
+      "centroidCell": {
+        "col": 502.2,
+        "row": 101.3
+      },
+      "centerLocalFt": {
+        "E": 297.3,
+        "N": -360.5
+      },
+      "bboxLocalFt": {
+        "E0": 265.7,
+        "E1": 331.4,
+        "N0": -393.7,
+        "N1": -324.8,
+        "widthFt": 67.3,
+        "depthFt": 70.5
+      },
+      "roofColor": "#c0bfbb",
+      "roofRGB": [
+        192,
+        191,
+        187
+      ],
+      "meanNDVI": -0.012,
+      "streetView": null
+    },
+    {
+      "id": 66,
+      "cellCount": 529,
+      "footprint_sqft": 1424,
+      "centroidCell": {
+        "col": 599.2,
+        "row": 252.4
+      },
+      "centerLocalFt": {
+        "E": 456.3,
+        "N": -112.5
+      },
+      "bboxLocalFt": {
+        "E0": 431.4,
+        "E1": 483.9,
+        "N0": -141.1,
+        "N1": -85.3,
+        "widthFt": 54.1,
+        "depthFt": 57.4
+      },
+      "roofColor": "#b9bbb6",
+      "roofRGB": [
+        185,
+        187,
+        182
+      ],
+      "meanNDVI": -0.031,
+      "streetView": null
+    },
+    {
+      "id": 67,
+      "cellCount": 1179,
+      "footprint_sqft": 3173,
+      "centroidCell": {
+        "col": 538.1,
+        "row": 117.9
+      },
+      "centerLocalFt": {
+        "E": 356.1,
+        "N": -333.2
+      },
+      "bboxLocalFt": {
+        "E0": 318.2,
+        "E1": 393.7,
+        "N0": -370.7,
+        "N1": -298.6,
+        "widthFt": 77.1,
+        "depthFt": 73.8
+      },
+      "roofColor": "#c1bfbb",
+      "roofRGB": [
+        193,
+        191,
+        187
+      ],
+      "meanNDVI": -0.013,
+      "streetView": null
+    },
+    {
+      "id": 68,
+      "cellCount": 889,
+      "footprint_sqft": 2392,
+      "centroidCell": {
+        "col": 80.3,
+        "row": 144.6
+      },
+      "centerLocalFt": {
+        "E": -394.9,
+        "N": -289.4
+      },
+      "bboxLocalFt": {
+        "E0": -424.9,
+        "E1": -367.5,
+        "N0": -315,
+        "N1": -264.1,
+        "widthFt": 59.1,
+        "depthFt": 52.5
+      },
+      "roofColor": "#a49989",
+      "roofRGB": [
+        164,
+        153,
+        137
+      ],
+      "meanNDVI": -0.046,
+      "streetView": null
+    },
+    {
+      "id": 69,
+      "cellCount": 1328,
+      "footprint_sqft": 3574,
+      "centroidCell": {
+        "col": 169.7,
+        "row": 60.7
+      },
+      "centerLocalFt": {
+        "E": -248.1,
+        "N": -426.9
+      },
+      "bboxLocalFt": {
+        "E0": -274,
+        "E1": -221.5,
+        "N0": -467.5,
+        "N1": -387.1,
+        "widthFt": 54.1,
+        "depthFt": 82
+      },
+      "roofColor": "#bba38e",
+      "roofRGB": [
+        187,
+        163,
+        142
+      ],
+      "meanNDVI": -0.025,
+      "streetView": null
+    },
+    {
+      "id": 70,
+      "cellCount": 1175,
+      "footprint_sqft": 3162,
+      "centroidCell": {
+        "col": 581.8,
+        "row": 472.9
+      },
+      "centerLocalFt": {
+        "E": 427.8,
+        "N": 249.2
+      },
+      "bboxLocalFt": {
+        "E0": 405.2,
+        "E1": 449.5,
+        "N0": 208.3,
+        "N1": 293.6,
+        "widthFt": 45.9,
+        "depthFt": 86.9
+      },
+      "roofColor": "#baa391",
+      "roofRGB": [
+        186,
+        163,
+        145
+      ],
+      "meanNDVI": -0.041,
+      "streetView": null
+    },
+    {
+      "id": 71,
+      "cellCount": 1307,
+      "footprint_sqft": 3517,
+      "centroidCell": {
+        "col": 622.9,
+        "row": 284.5
+      },
+      "centerLocalFt": {
+        "E": 495.3,
+        "N": -59.9
+      },
+      "bboxLocalFt": {
+        "E0": 462.6,
+        "E1": 521.7,
+        "N0": -105,
+        "N1": -14.8,
+        "widthFt": 60.7,
+        "depthFt": 91.9
+      },
+      "roofColor": "#bea38c",
+      "roofRGB": [
+        190,
+        163,
+        140
+      ],
+      "meanNDVI": -0.039,
+      "streetView": null
+    },
+    {
+      "id": 72,
+      "cellCount": 1008,
+      "footprint_sqft": 2713,
+      "centroidCell": {
+        "col": 482.2,
+        "row": 578.9
+      },
+      "centerLocalFt": {
+        "E": 264.4,
+        "N": 423.1
+      },
+      "bboxLocalFt": {
+        "E0": 239.5,
+        "E1": 288.7,
+        "N0": 390.4,
+        "N1": 452.8,
+        "widthFt": 50.9,
+        "depthFt": 64
+      },
+      "roofColor": "#c0b9ac",
+      "roofRGB": [
+        192,
+        185,
+        172
+      ],
+      "meanNDVI": -0.016,
+      "streetView": null
+    },
+    {
+      "id": 73,
+      "cellCount": 824,
+      "footprint_sqft": 2217,
+      "centroidCell": {
+        "col": 60.1,
+        "row": 488.6
+      },
+      "centerLocalFt": {
+        "E": -428,
+        "N": 274.9
+      },
+      "bboxLocalFt": {
+        "E0": -452.8,
+        "E1": -397,
+        "N0": 242.8,
+        "N1": 298.6,
+        "widthFt": 57.4,
+        "depthFt": 57.4
+      },
+      "roofColor": "#c1c0bc",
+      "roofRGB": [
+        193,
+        192,
+        188
+      ],
+      "meanNDVI": -0.01,
+      "streetView": null
+    },
+    {
+      "id": 74,
+      "cellCount": 386,
+      "footprint_sqft": 1039,
+      "centroidCell": {
+        "col": 361.4,
+        "row": 632.8
+      },
+      "centerLocalFt": {
+        "E": 66.3,
+        "N": 511.5
+      },
+      "bboxLocalFt": {
+        "E0": 37.7,
+        "E1": 91.9,
+        "N0": 495.4,
+        "N1": 521.7,
+        "widthFt": 55.8,
+        "depthFt": 27.9
+      },
+      "roofColor": "#b4aa9f",
+      "roofRGB": [
+        180,
+        170,
+        159
+      ],
+      "meanNDVI": -0.029,
+      "streetView": null
+    },
+    {
+      "id": 75,
+      "cellCount": 465,
+      "footprint_sqft": 1251,
+      "centroidCell": {
+        "col": 203.2,
+        "row": 28.5
+      },
+      "centerLocalFt": {
+        "E": -193.2,
+        "N": -479.9
+      },
+      "bboxLocalFt": {
+        "E0": -218.2,
+        "E1": -165.7,
+        "N0": -493.8,
+        "N1": -467.5,
+        "widthFt": 54.1,
+        "depthFt": 27.9
+      },
+      "roofColor": "#b89e89",
+      "roofRGB": [
+        184,
+        158,
+        137
+      ],
+      "meanNDVI": -0.024,
+      "streetView": null
+    },
+    {
+      "id": 76,
+      "cellCount": 281,
+      "footprint_sqft": 756,
+      "centroidCell": {
+        "col": 274.4,
+        "row": 633.1
+      },
+      "centerLocalFt": {
+        "E": -76.4,
+        "N": 512.1
+      },
+      "bboxLocalFt": {
+        "E0": -93.5,
+        "E1": -49.2,
+        "N0": 500.3,
+        "N1": 521.7,
+        "widthFt": 45.9,
+        "depthFt": 23
+      },
+      "roofColor": "#b89e91",
+      "roofRGB": [
+        184,
+        158,
+        145
+      ],
+      "meanNDVI": -0.028,
+      "streetView": null
+    },
+    {
+      "id": 77,
+      "cellCount": 156,
+      "footprint_sqft": 420,
+      "centroidCell": {
+        "col": 441.1,
+        "row": 613.2
+      },
+      "centerLocalFt": {
+        "E": 197,
+        "N": 479.3
+      },
+      "bboxLocalFt": {
+        "E0": 178.8,
+        "E1": 210,
+        "N0": 467.5,
+        "N1": 493.8,
+        "widthFt": 32.8,
+        "depthFt": 27.9
+      },
+      "roofColor": "#a9a698",
+      "roofRGB": [
+        169,
+        166,
+        152
+      ],
+      "meanNDVI": 0.01,
+      "streetView": null
+    },
+    {
+      "id": 78,
+      "cellCount": 1368,
+      "footprint_sqft": 3681,
+      "centroidCell": {
+        "col": 572.6,
+        "row": 129.9
+      },
+      "centerLocalFt": {
+        "E": 412.7,
+        "N": -313.4
+      },
+      "bboxLocalFt": {
+        "E0": 374,
+        "E1": 451.1,
+        "N0": -354.3,
+        "N1": -270.7,
+        "widthFt": 78.7,
+        "depthFt": 85.3
+      },
+      "roofColor": "#b7b1aa",
+      "roofRGB": [
+        183,
+        177,
+        170
+      ],
+      "meanNDVI": -0.027,
+      "streetView": null
+    },
+    {
+      "id": 79,
+      "cellCount": 185,
+      "footprint_sqft": 498,
+      "centroidCell": {
+        "col": 433.1,
+        "row": 24.8
+      },
+      "centerLocalFt": {
+        "E": 183.8,
+        "N": -485.9
+      },
+      "bboxLocalFt": {
+        "E0": 172.2,
+        "E1": 196.9,
+        "N0": -515.1,
+        "N1": -474.1,
+        "widthFt": 26.2,
+        "depthFt": 42.7
+      },
+      "roofColor": "#a7a399",
+      "roofRGB": [
+        167,
+        163,
+        153
+      ],
+      "meanNDVI": 0.049,
+      "streetView": null
+    },
+    {
+      "id": 80,
+      "cellCount": 810,
+      "footprint_sqft": 2180,
+      "centroidCell": {
+        "col": 183.1,
+        "row": 606.8
+      },
+      "centerLocalFt": {
+        "E": -226.2,
+        "N": 468.8
+      },
+      "bboxLocalFt": {
+        "E0": -262.5,
+        "E1": -190.3,
+        "N0": 447.8,
+        "N1": 485.6,
+        "widthFt": 73.8,
+        "depthFt": 39.4
+      },
+      "roofColor": "#afa79f",
+      "roofRGB": [
+        175,
+        167,
+        159
+      ],
+      "meanNDVI": -0.028,
+      "streetView": null
+    },
+    {
+      "id": 81,
+      "cellCount": 1391,
+      "footprint_sqft": 3743,
+      "centroidCell": {
+        "col": 109.8,
+        "row": 83.7
+      },
+      "centerLocalFt": {
+        "E": -346.4,
+        "N": -389.3
+      },
+      "bboxLocalFt": {
+        "E0": -372.4,
+        "E1": -319.9,
+        "N0": -434.7,
+        "N1": -346.1,
+        "widthFt": 54.1,
+        "depthFt": 90.2
+      },
+      "roofColor": "#b59585",
+      "roofRGB": [
+        181,
+        149,
+        133
+      ],
+      "meanNDVI": -0.03,
+      "streetView": null
+    },
+    {
+      "id": 82,
+      "cellCount": 182,
+      "footprint_sqft": 490,
+      "centroidCell": {
+        "col": 396.8,
+        "row": 636.4
+      },
+      "centerLocalFt": {
+        "E": 124.4,
+        "N": 517.3
+      },
+      "bboxLocalFt": {
+        "E0": 100.1,
+        "E1": 149.3,
+        "N0": 511.8,
+        "N1": 521.7,
+        "widthFt": 50.9,
+        "depthFt": 11.5
+      },
+      "roofColor": "#c1beb5",
+      "roofRGB": [
+        193,
+        190,
+        181
+      ],
+      "meanNDVI": -0.012,
+      "streetView": null
+    },
+    {
+      "id": 83,
+      "cellCount": 888,
+      "footprint_sqft": 2390,
+      "centroidCell": {
+        "col": 525.2,
+        "row": 576.4
+      },
+      "centerLocalFt": {
+        "E": 335,
+        "N": 419
+      },
+      "bboxLocalFt": {
+        "E0": 308.4,
+        "E1": 369.1,
+        "N0": 393.7,
+        "N1": 451.1,
+        "widthFt": 62.3,
+        "depthFt": 59.1
+      },
+      "roofColor": "#b19895",
+      "roofRGB": [
+        177,
+        152,
+        149
+      ],
+      "meanNDVI": -0.017,
+      "streetView": null
+    },
+    {
+      "id": 84,
+      "cellCount": 403,
+      "footprint_sqft": 1084,
+      "centroidCell": {
+        "col": 100.8,
+        "row": 565.7
+      },
+      "centerLocalFt": {
+        "E": -361.1,
+        "N": 401.3
+      },
+      "bboxLocalFt": {
+        "E0": -374,
+        "E1": -347.8,
+        "N0": 378.9,
+        "N1": 423.2,
+        "widthFt": 27.9,
+        "depthFt": 45.9
+      },
+      "roofColor": "#babab4",
+      "roofRGB": [
+        186,
+        186,
+        180
+      ],
+      "meanNDVI": -0.027,
+      "streetView": null
+    },
+    {
+      "id": 85,
+      "cellCount": 1096,
+      "footprint_sqft": 2949,
+      "centroidCell": {
+        "col": 606.8,
+        "row": 148.6
+      },
+      "centerLocalFt": {
+        "E": 468.8,
+        "N": -282.9
+      },
+      "bboxLocalFt": {
+        "E0": 436.4,
+        "E1": 500.3,
+        "N0": -321.5,
+        "N1": -239.5,
+        "widthFt": 65.6,
+        "depthFt": 83.7
+      },
+      "roofColor": "#929b9b",
+      "roofRGB": [
+        146,
+        155,
+        155
+      ],
+      "meanNDVI": -0.076,
+      "streetView": null
+    },
+    {
+      "id": 86,
+      "cellCount": 1284,
+      "footprint_sqft": 3455,
+      "centroidCell": {
+        "col": 623.7,
+        "row": 465
+      },
+      "centerLocalFt": {
+        "E": 496.5,
+        "N": 236.2
+      },
+      "bboxLocalFt": {
+        "E0": 470.8,
+        "E1": 518.4,
+        "N0": 188.6,
+        "N1": 283.8,
+        "widthFt": 49.2,
+        "depthFt": 96.8
+      },
+      "roofColor": "#bbbcb7",
+      "roofRGB": [
+        187,
+        188,
+        183
+      ],
+      "meanNDVI": -0.021,
+      "streetView": null
+    },
+    {
+      "id": 87,
+      "cellCount": 944,
+      "footprint_sqft": 2540,
+      "centroidCell": {
+        "col": 69.7,
+        "row": 98.2
+      },
+      "centerLocalFt": {
+        "E": -412.2,
+        "N": -365.5
+      },
+      "bboxLocalFt": {
+        "E0": -433.1,
+        "E1": -388.8,
+        "N0": -403.5,
+        "N1": -326.4,
+        "widthFt": 45.9,
+        "depthFt": 78.7
+      },
+      "roofColor": "#b59383",
+      "roofRGB": [
+        181,
+        147,
+        131
+      ],
+      "meanNDVI": -0.026,
+      "streetView": null
+    },
+    {
+      "id": 88,
+      "cellCount": 744,
+      "footprint_sqft": 2002,
+      "centroidCell": {
+        "col": 184.5,
+        "row": 6.5
+      },
+      "centerLocalFt": {
+        "E": -223.9,
+        "N": -515.9
+      },
+      "bboxLocalFt": {
+        "E0": -269,
+        "E1": -178.8,
+        "N0": -526.6,
+        "N1": -502,
+        "widthFt": 91.9,
+        "depthFt": 26.2
+      },
+      "roofColor": "#b5aea2",
+      "roofRGB": [
+        181,
+        174,
+        162
+      ],
+      "meanNDVI": -0.045,
+      "streetView": null
+    },
+    {
+      "id": 89,
+      "cellCount": 319,
+      "footprint_sqft": 858,
+      "centroidCell": {
+        "col": 455.6,
+        "row": 5.5
+      },
+      "centerLocalFt": {
+        "E": 220.8,
+        "N": -517.6
+      },
+      "bboxLocalFt": {
+        "E0": 185.4,
+        "E1": 244.4,
+        "N0": -526.6,
+        "N1": -495.4,
+        "widthFt": 60.7,
+        "depthFt": 32.8
+      },
+      "roofColor": "#beb5a5",
+      "roofRGB": [
+        190,
+        181,
+        165
+      ],
+      "meanNDVI": 0.012,
+      "streetView": null
+    },
+    {
+      "id": 90,
+      "cellCount": 857,
+      "footprint_sqft": 2306,
+      "centroidCell": {
+        "col": 173.1,
+        "row": 631.4
+      },
+      "centerLocalFt": {
+        "E": -242.6,
+        "N": 509.3
+      },
+      "bboxLocalFt": {
+        "E0": -287.1,
+        "E1": -198.5,
+        "N0": 493.8,
+        "N1": 521.7,
+        "widthFt": 90.2,
+        "depthFt": 29.5
+      },
+      "roofColor": "#bcb4ad",
+      "roofRGB": [
+        188,
+        180,
+        173
+      ],
+      "meanNDVI": -0.017,
+      "streetView": null
+    },
+    {
+      "id": 91,
+      "cellCount": 736,
+      "footprint_sqft": 1981,
+      "centroidCell": {
+        "col": 629.9,
+        "row": 162.9
+      },
+      "centerLocalFt": {
+        "E": 506.7,
+        "N": -259.4
+      },
+      "bboxLocalFt": {
+        "E0": 480.6,
+        "E1": 521.7,
+        "N0": -311.7,
+        "N1": -221.5,
+        "widthFt": 42.7,
+        "depthFt": 91.9
+      },
+      "roofColor": "#a3a5a2",
+      "roofRGB": [
+        163,
+        165,
+        162
+      ],
+      "meanNDVI": -0.046,
+      "streetView": null
+    },
+    {
+      "id": 92,
+      "cellCount": 334,
+      "footprint_sqft": 899,
+      "centroidCell": {
+        "col": 486,
+        "row": 633.9
+      },
+      "centerLocalFt": {
+        "E": 270.6,
+        "N": 513.3
+      },
+      "bboxLocalFt": {
+        "E0": 246.1,
+        "E1": 300.2,
+        "N0": 502,
+        "N1": 521.7,
+        "widthFt": 55.8,
+        "depthFt": 21.3
+      },
+      "roofColor": "#b6b9b4",
+      "roofRGB": [
+        182,
+        185,
+        180
+      ],
+      "meanNDVI": -0.029,
+      "streetView": null
+    },
+    {
+      "id": 93,
+      "cellCount": 374,
+      "footprint_sqft": 1006,
+      "centroidCell": {
+        "col": 100.4,
+        "row": 597.6
+      },
+      "centerLocalFt": {
+        "E": -361.8,
+        "N": 453.7
+      },
+      "bboxLocalFt": {
+        "E0": -374,
+        "E1": -349.4,
+        "N0": 431.4,
+        "N1": 475.7,
+        "widthFt": 26.2,
+        "depthFt": 45.9
+      },
+      "roofColor": "#c0b7a7",
+      "roofRGB": [
+        192,
+        183,
+        167
+      ],
+      "meanNDVI": -0.021,
+      "streetView": null
+    },
+    {
+      "id": 94,
+      "cellCount": 930,
+      "footprint_sqft": 2503,
+      "centroidCell": {
+        "col": 62.6,
+        "row": 565.8
+      },
+      "centerLocalFt": {
+        "E": -423.9,
+        "N": 401.5
+      },
+      "bboxLocalFt": {
+        "E0": -454.4,
+        "E1": -393.7,
+        "N0": 377.3,
+        "N1": 424.9,
+        "widthFt": 62.3,
+        "depthFt": 49.2
+      },
+      "roofColor": "#bbbbb5",
+      "roofRGB": [
+        187,
+        187,
+        181
+      ],
+      "meanNDVI": -0.022,
+      "streetView": null
+    },
+    {
+      "id": 95,
+      "cellCount": 172,
+      "footprint_sqft": 463,
+      "centroidCell": {
+        "col": 486,
+        "row": 3
+      },
+      "centerLocalFt": {
+        "E": 270.7,
+        "N": -521.7
+      },
+      "bboxLocalFt": {
+        "E0": 249.3,
+        "E1": 292,
+        "N0": -526.6,
+        "N1": -513.5,
+        "widthFt": 44.3,
+        "depthFt": 14.8
+      },
+      "roofColor": "#b3b5ad",
+      "roofRGB": [
+        179,
+        181,
+        173
+      ],
+      "meanNDVI": -0.034,
+      "streetView": null
+    },
+    {
+      "id": 96,
+      "cellCount": 892,
+      "footprint_sqft": 2400,
+      "centroidCell": {
+        "col": 574.2,
+        "row": 575.5
+      },
+      "centerLocalFt": {
+        "E": 415.3,
+        "N": 417.6
+      },
+      "bboxLocalFt": {
+        "E0": 385.5,
+        "E1": 442.9,
+        "N0": 392.1,
+        "N1": 444.6,
+        "widthFt": 59.1,
+        "depthFt": 54.1
+      },
+      "roofColor": "#948886",
+      "roofRGB": [
+        148,
+        136,
+        134
+      ],
+      "meanNDVI": -0.061,
+      "streetView": null
+    },
+    {
+      "id": 97,
+      "cellCount": 1001,
+      "footprint_sqft": 2694,
+      "centroidCell": {
+        "col": 522.7,
+        "row": 14.9
+      },
+      "centerLocalFt": {
+        "E": 330.9,
+        "N": -502.2
+      },
+      "bboxLocalFt": {
+        "E0": 298.6,
+        "E1": 364.2,
+        "N0": -526.6,
+        "N1": -470.8,
+        "widthFt": 67.3,
+        "depthFt": 57.4
+      },
+      "roofColor": "#c3c1b9",
+      "roofRGB": [
+        195,
+        193,
+        185
+      ],
+      "meanNDVI": -0.008,
+      "streetView": null
+    },
+    {
+      "id": 98,
+      "cellCount": 927,
+      "footprint_sqft": 2495,
+      "centroidCell": {
+        "col": 111.7,
+        "row": 19.3
+      },
+      "centerLocalFt": {
+        "E": -343.3,
+        "N": -494.9
+      },
+      "bboxLocalFt": {
+        "E0": -370.7,
+        "E1": -318.2,
+        "N0": -526.6,
+        "N1": -467.5,
+        "widthFt": 54.1,
+        "depthFt": 60.7
+      },
+      "roofColor": "#c1c0bb",
+      "roofRGB": [
+        193,
+        192,
+        187
+      ],
+      "meanNDVI": -0.014,
+      "streetView": null
+    },
+    {
+      "id": 99,
+      "cellCount": 374,
+      "footprint_sqft": 1006,
+      "centroidCell": {
+        "col": 529.4,
+        "row": 633.5
+      },
+      "centerLocalFt": {
+        "E": 341.8,
+        "N": 512.7
+      },
+      "bboxLocalFt": {
+        "E0": 310,
+        "E1": 369.1,
+        "N0": 498.7,
+        "N1": 521.7,
+        "widthFt": 60.7,
+        "depthFt": 24.6
+      },
+      "roofColor": "#b2bbb9",
+      "roofRGB": [
+        178,
+        187,
+        185
+      ],
+      "meanNDVI": 0.014,
+      "streetView": null
+    },
+    {
+      "id": 100,
+      "cellCount": 1264,
+      "footprint_sqft": 3401,
+      "centroidCell": {
+        "col": 560.1,
+        "row": 28.7
+      },
+      "centerLocalFt": {
+        "E": 392.2,
+        "N": -479.4
+      },
+      "bboxLocalFt": {
+        "E0": 354.3,
+        "E1": 431.4,
+        "N0": -521.7,
+        "N1": -439.6,
+        "widthFt": 78.7,
+        "depthFt": 83.7
+      },
+      "roofColor": "#c1bfbc",
+      "roofRGB": [
+        193,
+        191,
+        188
+      ],
+      "meanNDVI": -0.008,
+      "streetView": null
+    },
+    {
+      "id": 101,
+      "cellCount": 1131,
+      "footprint_sqft": 3043,
+      "centroidCell": {
+        "col": 63.9,
+        "row": 600.9
+      },
+      "centerLocalFt": {
+        "E": -421.7,
+        "N": 459.2
+      },
+      "bboxLocalFt": {
+        "E0": -464.2,
+        "E1": -385.5,
+        "N0": 436.4,
+        "N1": 485.6,
+        "widthFt": 80.4,
+        "depthFt": 50.9
+      },
+      "roofColor": "#c0b6a5",
+      "roofRGB": [
+        192,
+        182,
+        165
+      ],
+      "meanNDVI": -0.016,
+      "streetView": null
+    },
+    {
+      "id": 102,
+      "cellCount": 212,
+      "footprint_sqft": 570,
+      "centroidCell": {
+        "col": 100.4,
+        "row": 632
+      },
+      "centerLocalFt": {
+        "E": -361.8,
+        "N": 510.1
+      },
+      "bboxLocalFt": {
+        "E0": -374,
+        "E1": -351,
+        "N0": 497,
+        "N1": 521.7,
+        "widthFt": 24.6,
+        "depthFt": 26.2
+      },
+      "roofColor": "#c1b9a9",
+      "roofRGB": [
+        193,
+        185,
+        169
+      ],
+      "meanNDVI": -0.018,
+      "streetView": null
+    },
+    {
+      "id": 103,
+      "cellCount": 973,
+      "footprint_sqft": 2618,
+      "centroidCell": {
+        "col": 70.2,
+        "row": 25.3
+      },
+      "centerLocalFt": {
+        "E": -411.5,
+        "N": -485.1
+      },
+      "bboxLocalFt": {
+        "E0": -434.7,
+        "E1": -390.4,
+        "N0": -521.7,
+        "N1": -444.6,
+        "widthFt": 45.9,
+        "depthFt": 78.7
+      },
+      "roofColor": "#c1c0bc",
+      "roofRGB": [
+        193,
+        192,
+        188
+      ],
+      "meanNDVI": -0.01,
+      "streetView": null
+    },
+    {
+      "id": 104,
+      "cellCount": 924,
+      "footprint_sqft": 2486,
+      "centroidCell": {
+        "col": 615.5,
+        "row": 577.3
+      },
+      "centerLocalFt": {
+        "E": 483,
+        "N": 420.4
+      },
+      "bboxLocalFt": {
+        "E0": 451.1,
+        "E1": 513.5,
+        "N0": 393.7,
+        "N1": 444.6,
+        "widthFt": 64,
+        "depthFt": 52.5
+      },
+      "roofColor": "#b69487",
+      "roofRGB": [
+        182,
+        148,
+        135
+      ],
+      "meanNDVI": -0.024,
+      "streetView": null
+    },
+    {
+      "id": 105,
+      "cellCount": 1168,
+      "footprint_sqft": 3143,
+      "centroidCell": {
+        "col": 595.1,
+        "row": 41
+      },
+      "centerLocalFt": {
+        "E": 449.6,
+        "N": -459.4
+      },
+      "bboxLocalFt": {
+        "E0": 418.3,
+        "E1": 487.2,
+        "N0": -500.3,
+        "N1": -416.7,
+        "widthFt": 70.5,
+        "depthFt": 85.3
+      },
+      "roofColor": "#b7b9b5",
+      "roofRGB": [
+        183,
+        185,
+        181
+      ],
+      "meanNDVI": -0.029,
+      "streetView": null
+    },
+    {
+      "id": 106,
+      "cellCount": 681,
+      "footprint_sqft": 1833,
+      "centroidCell": {
+        "col": 64,
+        "row": 631.1
+      },
+      "centerLocalFt": {
+        "E": -421.7,
+        "N": 508.7
+      },
+      "bboxLocalFt": {
+        "E0": -456,
+        "E1": -387.1,
+        "N0": 492.1,
+        "N1": 521.7,
+        "widthFt": 70.5,
+        "depthFt": 31.2
+      },
+      "roofColor": "#c1b9aa",
+      "roofRGB": [
+        193,
+        185,
+        170
+      ],
+      "meanNDVI": -0.019,
+      "streetView": null
+    },
+    {
+      "id": 107,
+      "cellCount": 1141,
+      "footprint_sqft": 3070,
+      "centroidCell": {
+        "col": 625.4,
+        "row": 56.9
+      },
+      "centerLocalFt": {
+        "E": 499.4,
+        "N": -433.3
+      },
+      "bboxLocalFt": {
+        "E0": 465.9,
+        "E1": 521.7,
+        "N0": -475.7,
+        "N1": -393.7,
+        "widthFt": 57.4,
+        "depthFt": 83.7
+      },
+      "roofColor": "#bcada0",
+      "roofRGB": [
+        188,
+        173,
+        160
+      ],
+      "meanNDVI": -0.031,
+      "streetView": null
+    }
+  ]
+}
