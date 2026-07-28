@@ -9,3 +9,13 @@ visual examples/
 # elevation: large raw data + tooling (derived products are committed)
 elevation/raw/
 elevation/node_modules/
+
+# regenerable intermediates — the .bin/.json products are what the app loads.
+# Rebuild with: node process_laz.mjs (see header for the wide-tile env vars)
+elevation/osm_raw.json
+elevation/wide_*.asc
+elevation/wide_heightmap_16bit.png
+
+# texture archives — the extracted folders are committed instead
+grass/*.zip
+stucco/*.zip

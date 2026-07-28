@@ -52,7 +52,12 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
    Grid: 0.5 m cells · row 0 = south · col 0 = west
    UTM origin 548500 E / 3744020.5 N
    Scene origin = address 548660.3 E / 3744180.9 N → y = 0 at BASE_FT      */
-const terrainBuf = await fetch('elevation/terrain.bin').then(r => r.arrayBuffer());
+const [terrainBuf, maskBuf, naipBuf, REG] = await Promise.all([
+  fetch('elevation/terrain.bin').then(r => r.arrayBuffer()),
+  fetch('elevation/houses.bin').then(r => r.arrayBuffer()),   // Uint16 houseId+1 per cell
+  fetch('elevation/naip.bin').then(r => r.arrayBuffer()),     // [labelC,ndvi,R,G,B] per cell
+  fetch('elevation/houses.json').then(r => r.json()),
+]);
 document.getElementById('loading').style.display = 'none';
 
 const NC = 640, NR = 640;
@@ -60,18 +65,27 @@ const FT      = 3.280839895;
 const CELL_FT = 0.5 * FT;                  // 1.6404 ft per cell
 const BASE_FT = 399.57349381574863;         // DTM at address → scene y = 0
 
-const dtm = new Float32Array(terrainBuf, NC * NR * 4, NC * NR);  // second half
+const dsm  = new Float32Array(terrainBuf, 0, NC * NR);           // first half — roof surface
+const dtm  = new Float32Array(terrainBuf, NC * NR * 4, NC * NR); // second half — bare earth
+const hid  = new Uint16Array(maskBuf);                            // 0 = not a house
+const naip = new Uint8Array(naipBuf);
 
-const gridW   = NC * CELL_FT;
-const gridH   = NR * CELL_FT;
-const centerX = ((548500 + NC * 0.5 / 2) - 548660.3) * FT;   // ≈ −1 ft
-const centerZ = -((3744020.5 + NR * 0.5 / 2) - 3744180.9) * FT; // ≈ +1 ft
+/* Grid <-> scene mapping taken straight off the UTM georef in terrain_meta.json,
+   so the scene and the offline pipeline address the same cell by the same index.
+   Grid sample (row, col) is the elevation at UTM (X0 + col·CELL_M, Y0 + row·CELL_M);
+   the scene puts the street address at the origin with +Z running south.        */
+const X0 = 548500, Y0 = 3744020.5;             // grid origin (UTM 11N), metres
+const ADDR_E = 548660.3, ADDR_N = 3744180.9;   // street address = scene (0, 0)
+const CELL_M = 0.5;
+
+const cellX = col => (X0 + col * CELL_M - ADDR_E) * FT;
+const cellZ = row => (ADDR_N - (Y0 + row * CELL_M)) * FT;
+const colAt = wx => Math.round((wx / FT + ADDR_E - X0) / CELL_M);
+const rowAt = wz => Math.round((ADDR_N - wz / FT - Y0) / CELL_M);
 
 // DTM elevation at any scene (x, z) — used to seat houses on real ground
 function groundY(wx, wz) {
-  const col = Math.round((wx - centerX + NC * CELL_FT / 2) / CELL_FT);
-  const vr  = Math.round((wz - centerZ + NR * CELL_FT / 2) / CELL_FT);
-  const row = NR - 1 - vr;   // vr=0 = north = grid row NR−1
+  const col = colAt(wx), row = rowAt(wz);
   if (col < 0 || col >= NC || row < 0 || row >= NR) return 0;
   return dtm[row * NC + col] - BASE_FT;
 }
@@ -103,7 +117,9 @@ Object.assign(window, { THREE, scene, camera, controls });
 
 /* ── DTM TERRAIN (bare-earth ground) ── */
 {
-  const geo = new THREE.PlaneGeometry(gridW, gridH, NC - 1, NR - 1);
+  // NC samples span (NC−1) cell widths — using NC·CELL_FT here stretched the
+  // terrain ~0.16% against the house footprints, which are placed per cell.
+  const geo = new THREE.PlaneGeometry((NC - 1) * CELL_FT, (NR - 1) * CELL_FT, NC - 1, NR - 1);
   geo.rotateX(-Math.PI / 2);
   const pos = geo.attributes.position;
   for (let vr = 0; vr < NR; vr++) {
@@ -116,7 +132,7 @@ Object.assign(window, { THREE, scene, camera, controls });
   geo.computeVertexNormals();
   const mesh = new THREE.Mesh(geo,
     new THREE.MeshStandardMaterial({ color: 0xc4956a, roughness: 0.95, metalness: 0 }));
-  mesh.position.set(centerX, 0, centerZ);
+  mesh.position.set((cellX(0) + cellX(NC - 1)) / 2, 0, (cellZ(0) + cellZ(NR - 1)) / 2);
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -140,32 +156,69 @@ const frameMat  = new THREE.MeshStandardMaterial({ color: 0xf0ece2, roughness: 0
 const doorMat   = new THREE.MeshStandardMaterial({ color: 0x4a3a2c, roughness: 0.6 });
 const garageMat = new THREE.MeshStandardMaterial({ color: 0x9a958a, roughness: 0.65, metalness: 0.05 });
 
-/* ── HOUSE DEFINITIONS ──────────────────────────────────────────────────────
-   Coordinate system:  +x = east  ·  +z = south  ·  y = up
-   Road centreline at approximately x: −137 → +213 ,  z ≈ −30
-   Road south edge ≈ z = −19  ·  road north edge ≈ z = −41
-   Positions estimated from housesonmystreet.png (east-up, cul-de-sac at top).
-   All values in feet.  h = wall height only (roof added later).             */
-const HOUSES = [
-  // South side (z positive — south of road, lot front ≈ z −19)
-  { id: 'S1', x:  -55, z:  30, w: 46, d: 38, h: 10 },
-  { id: 'S2', x:   10, z:  28, w: 44, d: 38, h: 10 },
-  { id: 'S3', x:   75, z:  26, w: 44, d: 36, h:  9 },
-  { id: 'S4', x:  145, z:  24, w: 44, d: 36, h: 10 },
+/* ── HOUSE GEOMETRY FROM THE LiDAR FOOTPRINT MASK ───────────────────────────
+   No hand-typed boxes. elevation/houses.bin gives the real per-cell footprint
+   of all 108 clustered buildings; the DSM gives the roof surface height of
+   every one of those cells; naip.bin gives its colour from the aerial photo.
 
-  // North side (z negative — north of road, lot front ≈ z −41)
-  { id: 'N1', x:  -55, z: -85, w: 44, d: 36, h: 10 },
-  { id: 'N2', x:   10, z: -83, w: 44, d: 38, h:  9 },
-  { id: 'N3', x:   75, z: -82, w: 44, d: 36, h: 10 },
-  { id: 'N4', x:  145, z: -80, w: 42, d: 38, h:  9 },
+   A cluster is NOT one roof. Main house, garage extension, patio awnings and
+   the RV cover are one connected blob at different heights, so extruding the
+   measured surface per cell — rather than fitting a single height per house —
+   is what reproduces them. Roof pitch, the lower garage, and awnings all fall
+   out of the data; awnings keep their own colour because colour is per cell.  */
 
-  // Cul-de-sac south flank
-  { id: 'CS', x:  190, z:  14, w: 42, d: 32, h: 10 },
-  // Cul-de-sac north flank
-  { id: 'CN', x:  190, z: -74, w: 42, d: 32, h: 10 },
-  // Cul-de-sac back (faces west)
-  { id: 'CB', x:  232, z: -30, w: 32, d: 44, h:  9 },
-];
+// sRGB -> linear LUT (vertex colours bypass three's texture colour management)
+const S2L = new Float32Array(256);
+for (let i = 0; i < 256; i++) {
+  const c = i / 255;
+  S2L[i] = c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+}
+
+/* Roof height per house cell, median-filtered over the 3×3 neighbours that
+   belong to the SAME house. Kills LiDAR spikes (AC units, palm fronds hanging
+   over a roof edge) without rounding off the real step between roof levels. */
+function smoothedRoofY() {
+  const raw = new Float32Array(NC * NR);
+  for (let i = 0; i < NC * NR; i++) raw[i] = hid[i] ? dsm[i] - BASE_FT : NaN;
+  const out = new Float32Array(NC * NR);
+  const nb = [];
+  for (let r = 0; r < NR; r++) for (let c = 0; c < NC; c++) {
+    const i = r * NC + c;
+    if (!hid[i]) { out[i] = NaN; continue; }
+    nb.length = 0;
+    for (let dr = -1; dr <= 1; dr++) for (let dc = -1; dc <= 1; dc++) {
+      const rr = r + dr, cc = c + dc;
+      if (rr < 0 || rr >= NR || cc < 0 || cc >= NC) continue;
+      const q = rr * NC + cc;
+      if (hid[q] === hid[i]) nb.push(raw[q]);
+    }
+    nb.sort((a, b) => a - b);
+    out[i] = nb[nb.length >> 1];
+  }
+
+  /* Palm fronds. The consensus classifier hands a few canopy cells to the house
+     they overhang, and a 3×3 median can't remove a spike several cells wide —
+     they survive as 40-60 ft spires on 11 ft houses. Cap each cell at its own
+     cluster's p99 + 2 ft: high enough to keep a real ridge, low enough that a
+     frond collapses to roof level. ~0.2% of cells are touched. */
+  const byHouse = new Map();
+  for (let i = 0; i < NC * NR; i++) if (hid[i]) {
+    let a = byHouse.get(hid[i]); if (!a) byHouse.set(hid[i], a = []);
+    a.push(out[i]);
+  }
+  const ceil = new Map();
+  for (const [id, a] of byHouse) {
+    a.sort((x, y) => x - y);
+    ceil.set(id, a[Math.min(a.length - 1, Math.floor(a.length * 0.99))] + 2);
+  }
+  let clamped = 0;
+  for (let i = 0; i < NC * NR; i++) if (hid[i]) {
+    const cap = ceil.get(hid[i]);
+    if (out[i] > cap) { out[i] = cap; clamped++; }
+  }
+  console.log(`roof spikes clamped: ${clamped}`);
+  return out;
+}
 
 /* Which wall faces the street?  Road runs along z ≈ −30 from x −137 → +213,
    bulb at the east end.  Snap the house→nearest-road vector to a box axis. */
@@ -176,29 +229,72 @@ function frontAxis(x, z) {
   return Math.abs(dx) > Math.abs(dz) ? [Math.sign(dx) || 1, 0] : [0, Math.sign(dz) || -1];
 }
 
-/* Rough auto-colouring: each scene house borrows the roof colour of the nearest
-   NAIP-registry house (elevation/houses.json). Registry N is north-positive;
-   scene z is south-positive, so north maps to −z. */
-let REG = [];
-function roofColorFor(x, z) {
-  if (!REG.length) return 0xB06040;
-  let best = null, bd = 1e9;
-  for (const hh of REG) {
-    const ex = hh.centerLocalFt.E, nz = -hh.centerLocalFt.N;
-    const dd = (ex - x) * (ex - x) + (nz - z) * (nz - z);
-    if (dd < bd) { bd = dd; best = hh; }
-  }
-  return best ? (best.roofRGB[0] << 16) | (best.roofRGB[1] << 8) | best.roofRGB[2] : 0xB06040;
-}
+/* Registry lookup by id — houses.bin cells store houseId+1, matching houses.json */
+const byId = new Map(REG.houses.map(h => [h.id, h]));
+// scene x/z of a registry house (registry N is north-positive, scene z is south-positive)
+const regX = h => h.centerLocalFt.E, regZ = h => -h.centerLocalFt.N;
 
 /* Doors, windows and a garage on the street-facing wall. Thin planes set proud
-   of the stucco; a white frame plane sits just behind each glass/door panel. */
-function addOpenings(x, z, w, d, h, gy) {
-  const [fx, fz] = frontAxis(x, z);
+   of the stucco; a white frame plane sits just behind each glass/door panel.
+
+   The front wall is found in the mask, not assumed: walk this house's cells,
+   take the street-most cell in each lateral column, then keep the longest run
+   of those that share a plane. That skips the garage/awning bump-outs and
+   lands the openings on the actual main façade. */
+function addOpeningsOnMask(h, roofY) {
+  const [fx, fz] = frontAxis(regX(h), regZ(h));
+  const bb = h.bboxLocalFt, AC = REG.addressCell, cf = REG.cellFt;
+  const c0 = Math.max(0, Math.round(AC.col + bb.E0 / cf)), c1 = Math.min(NC - 1, Math.round(AC.col + bb.E1 / cf));
+  const r0 = Math.max(0, Math.round(AC.row + bb.N0 / cf)), r1 = Math.min(NR - 1, Math.round(AC.row + bb.N1 / cf));
+  const want = h.id + 1;
+
+  // lateral axis runs along columns when the façade faces north/south, else rows
+  const lat0 = fz !== 0 ? c0 : r0, lat1 = fz !== 0 ? c1 : r1;
+  const front = new Map();                              // lateral index -> depth index
+  for (let l = lat0; l <= lat1; l++) {
+    let best = null;
+    for (let d = (fz !== 0 ? r0 : c0); d <= (fz !== 0 ? r1 : c1); d++) {
+      const rr = fz !== 0 ? d : l, cc = fz !== 0 ? l : d;
+      if (hid[rr * NC + cc] !== want) continue;
+      // street side: north = higher row, east = higher col
+      if (best === null) best = d;
+      else if (fz < 0 || fx > 0 ? d > best : d < best) best = d;
+    }
+    if (best !== null) front.set(l, best);
+  }
+  if (front.size < 6) return;
+
+  const depths = [...front.values()].sort((a, b) => a - b);
+  const plane = depths[depths.length >> 1];
+  let run = null, cur = null;                            // longest run sharing that plane
+  for (let l = lat0; l <= lat1; l++) {
+    const ok = front.has(l) && Math.abs(front.get(l) - plane) <= 2;
+    if (ok) cur = cur ? { a: cur.a, b: l } : { a: l, b: l };
+    else { if (cur && (!run || cur.b - cur.a > run.b - run.a)) run = cur; cur = null; }
+  }
+  if (cur && (!run || cur.b - cur.a > run.b - run.a)) run = cur;
+  if (!run || run.b - run.a < 5) return;                 // needs ~10 ft of façade
+
+  // façade plane, its lateral extent, and the eave height along it
+  const HC = CELL_FT / 2;
+  const faceD = fz !== 0 ? cellZ(plane) + (fz < 0 ? -HC : HC) : cellX(plane) + (fx > 0 ? HC : -HC);
+  const latA  = fz !== 0 ? cellX(run.a) - HC : cellZ(run.b) - HC;
+  const latB  = fz !== 0 ? cellX(run.b) + HC : cellZ(run.a) + HC;
+  const L = Math.abs(latB - latA), latC = (latA + latB) / 2;
+
+  let eave = Infinity, gsum = 0, gn = 0;
+  for (let l = run.a; l <= run.b; l++) {
+    const rr = fz !== 0 ? front.get(l) : l, cc = fz !== 0 ? l : front.get(l);
+    const i = rr * NC + cc;
+    if (roofY[i] < eave) eave = roofY[i];
+    gsum += dtm[i] - BASE_FT; gn++;
+  }
+  const gy = gsum / gn, hgt = eave - gy;
+
+  const x = fz !== 0 ? latC : faceD;
+  const z = fz !== 0 ? faceD : latC;
   const eps = 0.12;
-  const L     = fx !== 0 ? d : w;                       // lateral span of the front wall
-  const faceX = fx !== 0 ? x + fx * (w / 2) : x;
-  const faceZ = fz !== 0 ? z + fz * (d / 2) : z;
+  const faceX = x, faceZ = z;
   const rotY  = fx > 0 ? Math.PI / 2 : fx < 0 ? -Math.PI / 2 : fz < 0 ? Math.PI : 0;
   const gW = Math.min(16, L * 0.4);
   // [ lateralFrac, sillY, width, height, kind ]
@@ -216,7 +312,7 @@ function addOpenings(x, z, w, d, h, gy) {
     scene.add(m);
   };
   for (const [lf, sill, ow, oh, kind] of items) {
-    if (sill + oh > h - 0.5) continue;                  // don't punch through the roofline
+    if (sill + oh > hgt - 0.5) continue;                // don't punch through the roofline
     const lat = lf * L;
     const cx = fx !== 0 ? faceX + fx * eps : x + lat;
     const cz = fz !== 0 ? faceZ + fz * eps : z + lat;
@@ -227,20 +323,76 @@ function addOpenings(x, z, w, d, h, gy) {
   }
 }
 
+/* Extrude every footprint cell: a roof quad at the measured DSM height, plus a
+   wall quad wherever the neighbour is lower (outside the mask → down to the
+   ground; same house but lower → the step between roof levels, i.e. the face
+   of the garage extension or awning). Everything merges into two buffers. */
 function buildHouses() {
-  HOUSES.forEach(({ x, z, w, d, h }) => {
-    const gy = groundY(x, z);
-    const roofMat = new THREE.MeshStandardMaterial({ color: roofColorFor(x, z), roughness: 0.9 });
-    const mats = [wallMat, wallMat, roofMat, baseMat, wallMat, wallMat];
-    const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mats);
-    mesh.position.set(x, gy + h / 2, z);
-    mesh.castShadow = mesh.receiveShadow = true;
-    scene.add(mesh);
-    addOpenings(x, z, w, d, h, gy);
-  });
+  const roofY = smoothedRoofY();
+  const H = CELL_FT / 2;
+  const rPos = [], rCol = [], wPos = [];
+
+  const quad = (arr, ax, ay, az, bx, by, bz, cx, cy, cz, dx, dy, dz) =>
+    arr.push(ax, ay, az, bx, by, bz, cx, cy, cz,  ax, ay, az, cx, cy, cz, dx, dy, dz);
+
+  for (let r = 0; r < NR; r++) for (let c = 0; c < NC; c++) {
+    const i = r * NC + c;
+    const id = hid[i];
+    if (!id) continue;
+    const x = cellX(c), z = cellZ(r), y = roofY[i];
+    const x0 = x - H, x1 = x + H, z0 = z - H, z1 = z + H;
+
+    // roof face (up), coloured by the aerial photo for this exact cell
+    quad(rPos, x0, y, z0,  x0, y, z1,  x1, y, z1,  x1, y, z0);
+    const R = S2L[naip[i * 5 + 2]], G = S2L[naip[i * 5 + 3]], B = S2L[naip[i * 5 + 4]];
+    for (let k = 0; k < 6; k++) rCol.push(R, G, B);
+
+    // walls: one per side whose neighbour sits lower than this cell
+    const gy = dtm[i] - BASE_FT - 0.5;                 // sink slightly into the terrain
+    const sides = [
+      [ 0, -1, x0, z0, x1, z0],   // west neighbour is col-1 → -x side
+      [ 0,  1, x1, z1, x0, z1],
+      [-1,  0, x1, z0, x1, z1],   // row-1 is south → +z side
+      [ 1,  0, x0, z1, x0, z0],
+    ];
+    for (const [dr, dc, ax, az, bx, bz] of sides) {
+      const rr = r + dr, cc = c + dc;
+      const inGrid = rr >= 0 && rr < NR && cc >= 0 && cc < NC;
+      const q = inGrid ? rr * NC + cc : -1;
+      // outside this house → wall runs to the ground; same house → only the step down
+      const base = (q >= 0 && hid[q] === id) ? roofY[q] : gy;
+      if (!(base < y - 0.05)) continue;
+      quad(wPos, ax, base, az,  bx, base, bz,  bx, y, bz,  ax, y, az);
+    }
+  }
+
+  const roofGeo = new THREE.BufferGeometry();
+  roofGeo.setAttribute('position', new THREE.Float32BufferAttribute(rPos, 3));
+  roofGeo.setAttribute('color',    new THREE.Float32BufferAttribute(rCol, 3));
+  roofGeo.computeVertexNormals();
+  const roofs = new THREE.Mesh(roofGeo, new THREE.MeshStandardMaterial({
+    vertexColors: true, roughness: 0.9, metalness: 0,
+  }));
+  roofs.castShadow = roofs.receiveShadow = true;
+  scene.add(roofs);
+
+  const wallGeo = new THREE.BufferGeometry();
+  wallGeo.setAttribute('position', new THREE.Float32BufferAttribute(wPos, 3));
+  wallGeo.computeVertexNormals();
+  const walls = new THREE.Mesh(wallGeo, wallMat);
+  walls.castShadow = walls.receiveShadow = true;
+  scene.add(walls);
+
+  console.log(`houses: ${REG.count} · roof cells ${rPos.length / 18} · wall quads ${wPos.length / 18}`);
+
+  // openings only on the houses fronting Alva Ct — the rest are background mass
+  for (const h of REG.houses) {
+    const x = regX(h), z = regZ(h);
+    if (x < ROAD_X0 - 40 || x > ROAD_X1 + 40 || Math.abs(z - ROAD_Z) > 110) continue;
+    addOpeningsOnMask(h, roofY);
+  }
 }
-// build after the roof-colour registry loads (falls back to placeholder colour if absent)
-fetch('elevation/houses.json').then(r => r.json()).then(j => { REG = j.houses; }).catch(() => {}).then(buildHouses);
+buildHouses();
 
 /* ── LIGHTING ── */
 scene.add(new THREE.HemisphereLight(0x87CEEB, 0xd4a76a, 0.5));

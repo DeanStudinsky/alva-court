@@ -8,6 +8,11 @@
   "thrNDVI": 0.2,
   "minFootprintCells": 150,
   "count": 108,
+  "mask": {
+    "file": "houses.bin",
+    "layout": "Uint16LE per cell, 640x640, row0=south col0=west; 0=none else houseId+1"
+  },
+  "heights": "heightFt/ridgeFt = nDSM median/p90 over the house cells; groundFt = median DTM (absolute NAVD88 ft)",
   "crossCheck": {
     "tallCells": 177485,
     "agree3of3": 104789,
@@ -41,6 +46,9 @@
         152,
         144
       ],
+      "heightFt": 17.3,
+      "ridgeFt": 20.5,
+      "groundFt": 402.17,
       "meanNDVI": -0.047,
       "streetView": null
     },
@@ -70,6 +78,9 @@
         180,
         161
       ],
+      "heightFt": 18.4,
+      "ridgeFt": 23.6,
+      "groundFt": 400.85,
       "meanNDVI": -0.01,
       "streetView": null
     },
@@ -99,6 +110,9 @@
         177,
         163
       ],
+      "heightFt": 18.8,
+      "ridgeFt": 20.9,
+      "groundFt": 401.35,
       "meanNDVI": -0.039,
       "streetView": null
     },
@@ -128,6 +142,9 @@
         145,
         144
       ],
+      "heightFt": 17.1,
+      "ridgeFt": 19.1,
+      "groundFt": 403.58,
       "meanNDVI": -0.026,
       "streetView": null
     },
@@ -157,6 +174,9 @@
         182,
         157
       ],
+      "heightFt": 17.3,
+      "ridgeFt": 19.5,
+      "groundFt": 403.51,
       "meanNDVI": -0.012,
       "streetView": null
     },
@@ -186,6 +206,9 @@
         192,
         188
       ],
+      "heightFt": 13.8,
+      "ridgeFt": 17,
+      "groundFt": 402.43,
       "meanNDVI": -0.016,
       "streetView": null
     },
@@ -215,6 +238,9 @@
         141,
         138
       ],
+      "heightFt": 18.3,
+      "ridgeFt": 20.3,
+      "groundFt": 402.43,
       "meanNDVI": -0.058,
       "streetView": null
     },
@@ -244,6 +270,9 @@
         188,
         186
       ],
+      "heightFt": 13.9,
+      "ridgeFt": 17.7,
+      "groundFt": 402.79,
       "meanNDVI": 0.023,
       "streetView": null
     },
@@ -273,6 +302,9 @@
         155,
         151
       ],
+      "heightFt": 9.9,
+      "ridgeFt": 10.6,
+      "groundFt": 402.3,
       "meanNDVI": -0.036,
       "streetView": null
     },
@@ -302,6 +334,9 @@
         184,
         182
       ],
+      "heightFt": 12.7,
+      "ridgeFt": 13,
+      "groundFt": 401.48,
       "meanNDVI": 0,
       "streetView": null
     },
@@ -331,6 +366,9 @@
         174,
         162
       ],
+      "heightFt": 10.2,
+      "ridgeFt": 12.3,
+      "groundFt": 402.66,
       "meanNDVI": -0.024,
       "streetView": null
     },
@@ -360,6 +398,9 @@
         189,
         180
       ],
+      "heightFt": 16.9,
+      "ridgeFt": 19.6,
+      "groundFt": 403.81,
       "meanNDVI": -0.005,
       "streetView": null
     },
@@ -389,6 +430,9 @@
         192,
         188
       ],
+      "heightFt": 14,
+      "ridgeFt": 17.9,
+      "groundFt": 401.87,
       "meanNDVI": -0.015,
       "streetView": null
     },
@@ -418,6 +462,9 @@
         155,
         140
       ],
+      "heightFt": 13,
+      "ridgeFt": 15.8,
+      "groundFt": 401.64,
       "meanNDVI": -0.096,
       "streetView": null
     },
@@ -447,6 +494,9 @@
         143,
         148
       ],
+      "heightFt": 18.4,
+      "ridgeFt": 20.6,
+      "groundFt": 401.57,
       "meanNDVI": -0.054,
       "streetView": null
     },
@@ -476,6 +526,9 @@
         158,
         151
       ],
+      "heightFt": 15.7,
+      "ridgeFt": 18.8,
+      "groundFt": 400.43,
       "meanNDVI": -0.043,
       "streetView": null
     },
@@ -505,6 +558,9 @@
         176,
         166
       ],
+      "heightFt": 10.7,
+      "ridgeFt": 20.1,
+      "groundFt": 402.3,
       "meanNDVI": -0.027,
       "streetView": null
     },
@@ -534,6 +590,9 @@
         175,
         164
       ],
+      "heightFt": 10.8,
+      "ridgeFt": 20.2,
+      "groundFt": 402.1,
       "meanNDVI": -0.027,
       "streetView": null
     },
@@ -563,6 +622,9 @@
         162,
         143
       ],
+      "heightFt": 12,
+      "ridgeFt": 14.5,
+      "groundFt": 402.56,
       "meanNDVI": -0.025,
       "streetView": null
     },
@@ -592,6 +654,9 @@
         188,
         173
       ],
+      "heightFt": 12.1,
+      "ridgeFt": 15.5,
+      "groundFt": 402.2,
       "meanNDVI": -0.009,
       "streetView": null
     },
@@ -621,6 +686,9 @@
         168,
         141
       ],
+      "heightFt": 11,
+      "ridgeFt": 13.2,
+      "groundFt": 402.2,
       "meanNDVI": -0.017,
       "streetView": null
     },
@@ -650,6 +718,9 @@
         174,
         163
       ],
+      "heightFt": 10.8,
+      "ridgeFt": 20,
+      "groundFt": 402.72,
       "meanNDVI": -0.028,
       "streetView": null
     },
@@ -679,6 +750,9 @@
         169,
         163
       ],
+      "heightFt": 17.2,
+      "ridgeFt": 20.5,
+      "groundFt": 401.77,
       "meanNDVI": -0.042,
       "streetView": null
     },
@@ -708,6 +782,9 @@
         176,
         164
       ],
+      "heightFt": 11.2,
+      "ridgeFt": 20.5,
+      "groundFt": 401.67,
       "meanNDVI": -0.027,
       "streetView": null
     },
@@ -737,6 +814,9 @@
         181,
         179
       ],
+      "heightFt": 11.8,
+      "ridgeFt": 15.8,
+      "groundFt": 401.51,
       "meanNDVI": 0.013,
       "streetView": null
     },
@@ -766,6 +846,9 @@
         156,
         145
       ],
+      "heightFt": 17,
+      "ridgeFt": 19.4,
+      "groundFt": 403.31,
       "meanNDVI": -0.054,
       "streetView": null
     },
@@ -795,6 +878,9 @@
         182,
         175
       ],
+      "heightFt": 16.1,
+      "ridgeFt": 18.9,
+      "groundFt": 402.46,
       "meanNDVI": -0.039,
       "streetView": null
     },
@@ -824,6 +910,9 @@
         174,
         164
       ],
+      "heightFt": 10.7,
+      "ridgeFt": 20.1,
+      "groundFt": 403.05,
       "meanNDVI": -0.026,
       "streetView": null
     },
@@ -853,6 +942,9 @@
         184,
         182
       ],
+      "heightFt": 14.7,
+      "ridgeFt": 19,
+      "groundFt": 401.18,
       "meanNDVI": 0.023,
       "streetView": null
     },
@@ -882,6 +974,9 @@
         177,
         160
       ],
+      "heightFt": 13.2,
+      "ridgeFt": 16.5,
+      "groundFt": 400.85,
       "meanNDVI": -0.023,
       "streetView": null
     },
@@ -911,6 +1006,9 @@
         188,
         178
       ],
+      "heightFt": 13.2,
+      "ridgeFt": 17.3,
+      "groundFt": 401.38,
       "meanNDVI": -0.012,
       "streetView": null
     },
@@ -940,6 +1038,9 @@
         173,
         162
       ],
+      "heightFt": 10.5,
+      "ridgeFt": 12.7,
+      "groundFt": 402.95,
       "meanNDVI": -0.023,
       "streetView": null
     },
@@ -969,6 +1070,9 @@
         190,
         179
       ],
+      "heightFt": 10.4,
+      "ridgeFt": 13,
+      "groundFt": 400.23,
       "meanNDVI": -0.008,
       "streetView": null
     },
@@ -998,6 +1102,9 @@
         155,
         149
       ],
+      "heightFt": 17.9,
+      "ridgeFt": 20.1,
+      "groundFt": 402.4,
       "meanNDVI": -0.049,
       "streetView": null
     },
@@ -1027,6 +1134,9 @@
         189,
         184
       ],
+      "heightFt": 13.6,
+      "ridgeFt": 17.8,
+      "groundFt": 401.18,
       "meanNDVI": -0.016,
       "streetView": null
     },
@@ -1056,6 +1166,9 @@
         176,
         165
       ],
+      "heightFt": 10.8,
+      "ridgeFt": 20.2,
+      "groundFt": 403.22,
       "meanNDVI": -0.027,
       "streetView": null
     },
@@ -1085,6 +1198,9 @@
         158,
         157
       ],
+      "heightFt": 20,
+      "ridgeFt": 23.7,
+      "groundFt": 402.33,
       "meanNDVI": -0.051,
       "streetView": null
     },
@@ -1114,6 +1230,9 @@
         144,
         148
       ],
+      "heightFt": 12.4,
+      "ridgeFt": 19.6,
+      "groundFt": 401.57,
       "meanNDVI": -0.078,
       "streetView": null
     },
@@ -1143,6 +1262,9 @@
         166,
         147
       ],
+      "heightFt": 11.8,
+      "ridgeFt": 20.6,
+      "groundFt": 402.69,
       "meanNDVI": -0.034,
       "streetView": null
     },
@@ -1172,6 +1294,9 @@
         161,
         158
       ],
+      "heightFt": 10.5,
+      "ridgeFt": 12.2,
+      "groundFt": 404.04,
       "meanNDVI": -0.055,
       "streetView": null
     },
@@ -1201,6 +1326,9 @@
         191,
         180
       ],
+      "heightFt": 19.7,
+      "ridgeFt": 23,
+      "groundFt": 401.44,
       "meanNDVI": -0.012,
       "streetView": null
     },
@@ -1230,6 +1358,9 @@
         171,
         162
       ],
+      "heightFt": 12.6,
+      "ridgeFt": 16.3,
+      "groundFt": 402.59,
       "meanNDVI": -0.035,
       "streetView": null
     },
@@ -1259,6 +1390,9 @@
         181,
         175
       ],
+      "heightFt": 18,
+      "ridgeFt": 22.8,
+      "groundFt": 400.2,
       "meanNDVI": -0.039,
       "streetView": null
     },
@@ -1288,6 +1422,9 @@
         149,
         140
       ],
+      "heightFt": 13.4,
+      "ridgeFt": 17.5,
+      "groundFt": 399.87,
       "meanNDVI": -0.025,
       "streetView": null
     },
@@ -1317,6 +1454,9 @@
         187,
         173
       ],
+      "heightFt": 13.9,
+      "ridgeFt": 18.2,
+      "groundFt": 401.97,
       "meanNDVI": -0.012,
       "streetView": null
     },
@@ -1346,6 +1486,9 @@
         179,
         168
       ],
+      "heightFt": 13.2,
+      "ridgeFt": 16.5,
+      "groundFt": 399.87,
       "meanNDVI": -0.021,
       "streetView": null
     },
@@ -1375,6 +1518,9 @@
         181,
         175
       ],
+      "heightFt": 17.8,
+      "ridgeFt": 20.2,
+      "groundFt": 402.89,
       "meanNDVI": -0.027,
       "streetView": null
     },
@@ -1404,6 +1550,9 @@
         183,
         177
       ],
+      "heightFt": 11.8,
+      "ridgeFt": 15.1,
+      "groundFt": 400.59,
       "meanNDVI": -0.034,
       "streetView": null
     },
@@ -1433,6 +1582,9 @@
         156,
         148
       ],
+      "heightFt": 12.8,
+      "ridgeFt": 15.3,
+      "groundFt": 403.15,
       "meanNDVI": -0.043,
       "streetView": null
     },
@@ -1462,6 +1614,9 @@
         164,
         152
       ],
+      "heightFt": 10.8,
+      "ridgeFt": 14.2,
+      "groundFt": 402.17,
       "meanNDVI": -0.023,
       "streetView": null
     },
@@ -1491,6 +1646,9 @@
         174,
         167
       ],
+      "heightFt": 13.8,
+      "ridgeFt": 18.2,
+      "groundFt": 401.38,
       "meanNDVI": -0.036,
       "streetView": null
     },
@@ -1520,6 +1678,9 @@
         147,
         145
       ],
+      "heightFt": 17.4,
+      "ridgeFt": 20.1,
+      "groundFt": 401.9,
       "meanNDVI": -0.059,
       "streetView": null
     },
@@ -1549,6 +1710,9 @@
         146,
         144
       ],
+      "heightFt": 11,
+      "ridgeFt": 13.3,
+      "groundFt": 400.1,
       "meanNDVI": 0.002,
       "streetView": null
     },
@@ -1578,6 +1742,9 @@
         193,
         189
       ],
+      "heightFt": 14.1,
+      "ridgeFt": 18,
+      "groundFt": 402.62,
       "meanNDVI": -0.004,
       "streetView": null
     },
@@ -1607,6 +1774,9 @@
         164,
         145
       ],
+      "heightFt": 10.9,
+      "ridgeFt": 13.7,
+      "groundFt": 402.53,
       "meanNDVI": -0.027,
       "streetView": null
     },
@@ -1636,6 +1806,9 @@
         159,
         157
       ],
+      "heightFt": 11.9,
+      "ridgeFt": 15.2,
+      "groundFt": 402.92,
       "meanNDVI": -0.011,
       "streetView": null
     },
@@ -1665,6 +1838,9 @@
         164,
         141
       ],
+      "heightFt": 14.6,
+      "ridgeFt": 18.4,
+      "groundFt": 401.54,
       "meanNDVI": -0.018,
       "streetView": null
     },
@@ -1694,6 +1870,9 @@
         143,
         138
       ],
+      "heightFt": 11.1,
+      "ridgeFt": 13.5,
+      "groundFt": 400.16,
       "meanNDVI": -0.06,
       "streetView": null
     },
@@ -1723,6 +1902,9 @@
         193,
         189
       ],
+      "heightFt": 19.6,
+      "ridgeFt": 22.7,
+      "groundFt": 404.3,
       "meanNDVI": -0.008,
       "streetView": null
     },
@@ -1752,6 +1934,9 @@
         162,
         140
       ],
+      "heightFt": 10.6,
+      "ridgeFt": 12.2,
+      "groundFt": 399.44,
       "meanNDVI": -0.023,
       "streetView": null
     },
@@ -1781,6 +1966,9 @@
         161,
         157
       ],
+      "heightFt": 11.6,
+      "ridgeFt": 15.2,
+      "groundFt": 404.04,
       "meanNDVI": -0.043,
       "streetView": null
     },
@@ -1810,6 +1998,9 @@
         176,
         159
       ],
+      "heightFt": 13.2,
+      "ridgeFt": 16.4,
+      "groundFt": 401.61,
       "meanNDVI": -0.023,
       "streetView": null
     },
@@ -1839,6 +2030,9 @@
         119,
         76
       ],
+      "heightFt": 20.3,
+      "ridgeFt": 21.4,
+      "groundFt": 399.11,
       "meanNDVI": 0.193,
       "streetView": null
     },
@@ -1868,6 +2062,9 @@
         154,
         150
       ],
+      "heightFt": 11.6,
+      "ridgeFt": 13.6,
+      "groundFt": 403.31,
       "meanNDVI": -0.012,
       "streetView": null
     },
@@ -1897,6 +2094,9 @@
         163,
         158
       ],
+      "heightFt": 14,
+      "ridgeFt": 18.3,
+      "groundFt": 402.95,
       "meanNDVI": -0.038,
       "streetView": null
     },
@@ -1926,6 +2126,9 @@
         191,
         187
       ],
+      "heightFt": 12.3,
+      "ridgeFt": 15.9,
+      "groundFt": 399.97,
       "meanNDVI": -0.012,
       "streetView": null
     },
@@ -1955,6 +2158,9 @@
         187,
         182
       ],
+      "heightFt": 17.2,
+      "ridgeFt": 19.9,
+      "groundFt": 401.57,
       "meanNDVI": -0.031,
       "streetView": null
     },
@@ -1984,6 +2190,9 @@
         191,
         187
       ],
+      "heightFt": 13.4,
+      "ridgeFt": 17.4,
+      "groundFt": 400.75,
       "meanNDVI": -0.013,
       "streetView": null
     },
@@ -2013,6 +2222,9 @@
         153,
         137
       ],
+      "heightFt": 10.6,
+      "ridgeFt": 11.7,
+      "groundFt": 401.18,
       "meanNDVI": -0.046,
       "streetView": null
     },
@@ -2042,6 +2254,9 @@
         163,
         142
       ],
+      "heightFt": 21.6,
+      "ridgeFt": 24.6,
+      "groundFt": 399.64,
       "meanNDVI": -0.025,
       "streetView": null
     },
@@ -2071,6 +2286,9 @@
         163,
         145
       ],
+      "heightFt": 12,
+      "ridgeFt": 14.5,
+      "groundFt": 400.72,
       "meanNDVI": -0.041,
       "streetView": null
     },
@@ -2100,6 +2318,9 @@
         163,
         140
       ],
+      "heightFt": 14.5,
+      "ridgeFt": 17.7,
+      "groundFt": 399.9,
       "meanNDVI": -0.039,
       "streetView": null
     },
@@ -2129,6 +2350,9 @@
         185,
         172
       ],
+      "heightFt": 12.6,
+      "ridgeFt": 16.3,
+      "groundFt": 402.89,
       "meanNDVI": -0.016,
       "streetView": null
     },
@@ -2158,6 +2382,9 @@
         192,
         188
       ],
+      "heightFt": 10.7,
+      "ridgeFt": 12.9,
+      "groundFt": 404.27,
       "meanNDVI": -0.01,
       "streetView": null
     },
@@ -2187,6 +2414,9 @@
         170,
         159
       ],
+      "heightFt": 11.9,
+      "ridgeFt": 14.6,
+      "groundFt": 403.61,
       "meanNDVI": -0.029,
       "streetView": null
     },
@@ -2216,6 +2446,9 @@
         158,
         137
       ],
+      "heightFt": 10.7,
+      "ridgeFt": 12.3,
+      "groundFt": 399.51,
       "meanNDVI": -0.024,
       "streetView": null
     },
@@ -2245,6 +2478,9 @@
         158,
         145
       ],
+      "heightFt": 11.5,
+      "ridgeFt": 14.3,
+      "groundFt": 402.66,
       "meanNDVI": -0.028,
       "streetView": null
     },
@@ -2274,6 +2510,9 @@
         166,
         152
       ],
+      "heightFt": 20.9,
+      "ridgeFt": 24.1,
+      "groundFt": 403.38,
       "meanNDVI": 0.01,
       "streetView": null
     },
@@ -2303,6 +2542,9 @@
         177,
         170
       ],
+      "heightFt": 12.8,
+      "ridgeFt": 16,
+      "groundFt": 400.82,
       "meanNDVI": -0.027,
       "streetView": null
     },
@@ -2332,6 +2574,9 @@
         163,
         153
       ],
+      "heightFt": 9.2,
+      "ridgeFt": 10.3,
+      "groundFt": 399.31,
       "meanNDVI": 0.049,
       "streetView": null
     },
@@ -2361,6 +2606,9 @@
         167,
         159
       ],
+      "heightFt": 11.5,
+      "ridgeFt": 13.7,
+      "groundFt": 402.92,
       "meanNDVI": -0.028,
       "streetView": null
     },
@@ -2390,6 +2638,9 @@
         149,
         133
       ],
+      "heightFt": 11.9,
+      "ridgeFt": 20.7,
+      "groundFt": 401.25,
       "meanNDVI": -0.03,
       "streetView": null
     },
@@ -2419,6 +2670,9 @@
         190,
         181
       ],
+      "heightFt": 11.4,
+      "ridgeFt": 14.1,
+      "groundFt": 403.54,
       "meanNDVI": -0.012,
       "streetView": null
     },
@@ -2448,6 +2702,9 @@
         152,
         149
       ],
+      "heightFt": 13,
+      "ridgeFt": 15.6,
+      "groundFt": 402.49,
       "meanNDVI": -0.017,
       "streetView": null
     },
@@ -2477,6 +2734,9 @@
         186,
         180
       ],
+      "heightFt": 10.5,
+      "ridgeFt": 12.4,
+      "groundFt": 404.53,
       "meanNDVI": -0.027,
       "streetView": null
     },
@@ -2506,6 +2766,9 @@
         155,
         155
       ],
+      "heightFt": 11.8,
+      "ridgeFt": 15.4,
+      "groundFt": 400.62,
       "meanNDVI": -0.076,
       "streetView": null
     },
@@ -2535,6 +2798,9 @@
         188,
         183
       ],
+      "heightFt": 11.5,
+      "ridgeFt": 15.3,
+      "groundFt": 400.69,
       "meanNDVI": -0.021,
       "streetView": null
     },
@@ -2564,6 +2830,9 @@
         147,
         131
       ],
+      "heightFt": 11.5,
+      "ridgeFt": 14,
+      "groundFt": 400.72,
       "meanNDVI": -0.026,
       "streetView": null
     },
@@ -2593,6 +2862,9 @@
         174,
         162
       ],
+      "heightFt": 13.4,
+      "ridgeFt": 16.5,
+      "groundFt": 400.39,
       "meanNDVI": -0.045,
       "streetView": null
     },
@@ -2622,6 +2894,9 @@
         181,
         165
       ],
+      "heightFt": 12.8,
+      "ridgeFt": 19.6,
+      "groundFt": 398.98,
       "meanNDVI": 0.012,
       "streetView": null
     },
@@ -2651,6 +2926,9 @@
         180,
         173
       ],
+      "heightFt": 13,
+      "ridgeFt": 16.8,
+      "groundFt": 403.64,
       "meanNDVI": -0.017,
       "streetView": null
     },
@@ -2680,6 +2958,9 @@
         165,
         162
       ],
+      "heightFt": 12.2,
+      "ridgeFt": 18.3,
+      "groundFt": 399.87,
       "meanNDVI": -0.046,
       "streetView": null
     },
@@ -2709,6 +2990,9 @@
         185,
         180
       ],
+      "heightFt": 8.2,
+      "ridgeFt": 10.6,
+      "groundFt": 403.08,
       "meanNDVI": -0.029,
       "streetView": null
     },
@@ -2738,6 +3022,9 @@
         183,
         167
       ],
+      "heightFt": 10.2,
+      "ridgeFt": 11.9,
+      "groundFt": 405.22,
       "meanNDVI": -0.021,
       "streetView": null
     },
@@ -2767,6 +3054,9 @@
         187,
         181
       ],
+      "heightFt": 21,
+      "ridgeFt": 24.4,
+      "groundFt": 405.05,
       "meanNDVI": -0.022,
       "streetView": null
     },
@@ -2796,6 +3086,9 @@
         181,
         173
       ],
+      "heightFt": 15.3,
+      "ridgeFt": 17.3,
+      "groundFt": 398.65,
       "meanNDVI": -0.034,
       "streetView": null
     },
@@ -2825,6 +3118,9 @@
         136,
         134
       ],
+      "heightFt": 12.4,
+      "ridgeFt": 15.3,
+      "groundFt": 402.59,
       "meanNDVI": -0.061,
       "streetView": null
     },
@@ -2854,6 +3150,9 @@
         193,
         185
       ],
+      "heightFt": 16,
+      "ridgeFt": 20.3,
+      "groundFt": 398.2,
       "meanNDVI": -0.008,
       "streetView": null
     },
@@ -2883,6 +3182,9 @@
         192,
         187
       ],
+      "heightFt": 17.9,
+      "ridgeFt": 21.3,
+      "groundFt": 401.21,
       "meanNDVI": -0.014,
       "streetView": null
     },
@@ -2912,6 +3214,9 @@
         187,
         185
       ],
+      "heightFt": 12.1,
+      "ridgeFt": 14.8,
+      "groundFt": 403.58,
       "meanNDVI": 0.014,
       "streetView": null
     },
@@ -2941,6 +3246,9 @@
         191,
         188
       ],
+      "heightFt": 13.9,
+      "ridgeFt": 17.7,
+      "groundFt": 397.57,
       "meanNDVI": -0.008,
       "streetView": null
     },
@@ -2970,6 +3278,9 @@
         182,
         165
       ],
+      "heightFt": 11,
+      "ridgeFt": 14.2,
+      "groundFt": 405.51,
       "meanNDVI": -0.016,
       "streetView": null
     },
@@ -2999,6 +3310,9 @@
         185,
         169
       ],
+      "heightFt": 10.1,
+      "ridgeFt": 11.8,
+      "groundFt": 405.41,
       "meanNDVI": -0.018,
       "streetView": null
     },
@@ -3028,6 +3342,9 @@
         192,
         188
       ],
+      "heightFt": 11.3,
+      "ridgeFt": 14.1,
+      "groundFt": 400.89,
       "meanNDVI": -0.01,
       "streetView": null
     },
@@ -3057,6 +3374,9 @@
         148,
         135
       ],
+      "heightFt": 11.8,
+      "ridgeFt": 15.1,
+      "groundFt": 401.94,
       "meanNDVI": -0.024,
       "streetView": null
     },
@@ -3086,6 +3406,9 @@
         185,
         181
       ],
+      "heightFt": 13,
+      "ridgeFt": 13.4,
+      "groundFt": 397.54,
       "meanNDVI": -0.029,
       "streetView": null
     },
@@ -3115,6 +3438,9 @@
         185,
         170
       ],
+      "heightFt": 11.4,
+      "ridgeFt": 14.9,
+      "groundFt": 405.51,
       "meanNDVI": -0.019,
       "streetView": null
     },
@@ -3144,6 +3470,9 @@
         173,
         160
       ],
+      "heightFt": 14.1,
+      "ridgeFt": 17.8,
+      "groundFt": 397.47,
       "meanNDVI": -0.031,
       "streetView": null
     }

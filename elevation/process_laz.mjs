@@ -4,12 +4,19 @@ import lp from 'laz-perf';
 const createLazPerf = lp.createLazPerf || lp.create;
 
 // ---- config ----
-const CELL = 0.5;                 // meters per grid cell
-const HALF = 160;                 // clip half-size (m) -> 320m box
+// Defaults reproduce the original 320 m @ 0.5 m detail tile exactly. Override via
+// env to cut a different box — used to build the wide tile that reaches the
+// stop-controlled intersections OSM knows about but the detail tile doesn't:
+//   ALVA_CELL=1 ALVA_X0=548000 ALVA_Y0=3744000 ALVA_NC=1000 ALVA_NR=1000 \
+//   ALVA_PREFIX=wide node process_laz.mjs
+const CELL = +(process.env.ALVA_CELL ?? 0.5);   // meters per grid cell
+const HALF = +(process.env.ALVA_HALF ?? 160);   // clip half-size (m) -> 320m box
 const ADDR_E = 548660.3, ADDR_N = 3744180.9;   // address in UTM11N
-const X0 = Math.floor((ADDR_E - HALF)/CELL)*CELL;
-const Y0 = Math.floor((ADDR_N - HALF)/CELL)*CELL;
-const NC = Math.round((2*HALF)/CELL), NR = NC;
+const X0 = +(process.env.ALVA_X0 ?? Math.floor((ADDR_E - HALF)/CELL)*CELL);
+const Y0 = +(process.env.ALVA_Y0 ?? Math.floor((ADDR_N - HALF)/CELL)*CELL);
+const NC = +(process.env.ALVA_NC ?? Math.round((2*HALF)/CELL));
+const NR = +(process.env.ALVA_NR ?? NC);
+const PREFIX = process.env.ALVA_PREFIX ?? null;   // null = original filenames
 const X1 = X0 + NC*CELL, Y1 = Y0 + NR*CELL;
 console.log(`Clip box E[${X0}..${X1}] N[${Y0}..${Y1}]  grid ${NC}x${NR} @ ${CELL}m`);
 
@@ -88,8 +95,12 @@ function writeAsc(path, g){
   }
   writeFileSync(path, lines.join('\n'));
 }
-writeAsc('alva_dsm_0p5m.asc', dsmFilled);
-writeAsc('alva_dtm_0p5m.asc', dtmFilled);
+const DSM_ASC = PREFIX ? `${PREFIX}_dsm.asc` : 'alva_dsm_0p5m.asc';
+const DTM_ASC = PREFIX ? `${PREFIX}_dtm.asc` : 'alva_dtm_0p5m.asc';
+const HM_PNG  = PREFIX ? `${PREFIX}_heightmap_16bit.png` : 'alva_dsm_heightmap_16bit.png';
+const META_JS = PREFIX ? `${PREFIX}_dsm_meta.json` : 'alva_dsm_meta.json';
+writeAsc(DSM_ASC, dsmFilled);
+writeAsc(DTM_ASC, dtmFilled);
 
 // ---- minimal 16-bit grayscale PNG (north up) ----
 function crc32(b){let c=~0;for(let i=0;i<b.length;i++){c^=b[i];for(let k=0;k<8;k++)c=(c>>>1)^(0xEDB88320&-(c&1));}return ~c>>>0;}
@@ -102,7 +113,7 @@ function writePNG16(path,g,mn,mx){
   const png=Buffer.concat([Buffer.from([137,80,78,71,13,10,26,10]),chunk('IHDR',ihdr),chunk('IDAT',idat),chunk('IEND',Buffer.alloc(0))]);
   writeFileSync(path,png);
 }
-writePNG16('alva_dsm_heightmap_16bit.png', dsmFilled, sD.mn, sD.mx);
+writePNG16(HM_PNG, dsmFilled, sD.mn, sD.mx);
 
 // ---- georef + integration meta ----
 const M2FT=3.280839895;
@@ -114,9 +125,9 @@ const meta={
   grid:{ncols:NC,nrows:NR,cellSize_m:CELL,xllcorner:X0,yllcorner:Y0},
   dsm:{min_m:sD.mn,max_m:sD.mx,min_ft:sD.mn*M2FT,max_ft:sD.mx*M2FT,relief_ft:(sD.mx-sD.mn)*M2FT},
   dtm:{min_m:sT.mn,max_m:sT.mx},
-  heightmap_png:{file:'alva_dsm_heightmap_16bit.png',encoding:'16-bit grayscale, 0=min .. 65535=max, north up',
+  heightmap_png:{file:HM_PNG,encoding:'16-bit grayscale, 0=min .. 65535=max, north up',
     decode:'elevation_m = min_m + (gray/65535)*(max_m-min_m)'},
 };
-writeFileSync('alva_dsm_meta.json', JSON.stringify(meta,null,2));
-console.log('WROTE alva_dsm_0p5m.asc, alva_dtm_0p5m.asc, alva_dsm_heightmap_16bit.png, alva_dsm_meta.json');
+writeFileSync(META_JS, JSON.stringify(meta,null,2));
+console.log('WROTE', [DSM_ASC, DTM_ASC, HM_PNG, META_JS].join(', '));
 z.delete(); mod._free(fptr); mod._free(dest);

@@ -31,6 +31,12 @@ const cb = readFileSync('classify.bin');
 const A = i => cb[i * 6], B = i => cb[i * 6 + 1];
 const ndsmByte = i => cb[i * 6 + 2];              // 0..255 over 0..40 ft
 
+// ---- read terrain.bin (feet, [DSM N][DTM N]) for true per-house heights ----
+// classify.bin's nDSM byte is quantised to 40ft/255; the float grids are exact.
+const tb = readFileSync('terrain.bin');
+const dsmFt = new Float32Array(tb.buffer, tb.byteOffset, N);
+const dtmFt = new Float32Array(tb.buffer, tb.byteOffset + N * 4, N);
+
 // ---- read NAIP (pngjs expands every source to RGBA in .data) ----
 const rgb = PNG.sync.read(readFileSync('naip/naip_rgb.png'));
 const red = PNG.sync.read(readFileSync('naip/naip_red.png'));
@@ -98,7 +104,13 @@ for (let s = 0; s < N; s++) {
   const rs = [], gs = [], bs = [], nds = [];
   for (const q of cells) { rs.push(roofR[q]); gs.push(roofG[q]); bs.push(roofB[q]); nds.push(ndvi[q]); }
   const med = arr => { arr.sort((x, y) => x - y); return arr[arr.length >> 1]; };
+  const pct = (arr, p) => { arr.sort((x, y) => x - y); return arr[Math.min(arr.length - 1, Math.floor(arr.length * p))]; };
   const mR = med(rs), mG = med(gs), mB = med(bs);
+  // heights straight off the float grids: nDSM = roof surface - bare earth.
+  // median = the flat bulk of the roof (eave/deck height), p90 = ridge/parapet.
+  // groundFt is the pad the house sits on, absolute NAVD88 ft (scene subtracts baseFt).
+  const nd_ = cells.map(q => dsmFt[q] - dtmFt[q]);
+  const gr_ = cells.map(q => dtmFt[q]);
   const hex = '#' + [mR, mG, mB].map(v => v.toString(16).padStart(2, '0')).join('');
   const cc = sc / n, cr = sr / n;                 // centroid col,row (from south)
   houses.push({
@@ -115,13 +127,27 @@ for (let s = 0; s < N; s++) {
     },
     roofColor: hex,
     roofRGB: [mR, mG, mB],
+    heightFt: +med(nd_.slice()).toFixed(1),        // eave / flat-roof deck
+    ridgeFt: +pct(nd_.slice(), 0.9).toFixed(1),    // top of roof
+    groundFt: +med(gr_.slice()).toFixed(2),        // absolute pad elevation, NAVD88 ft
     meanNDVI: +(nds.reduce((a, b) => a + b, 0) / n).toFixed(3),
     streetView: null,                             // <- user attaches a screenshot filename/id here
   });
 }
 // stable-ish ordering: nearest the address first (so #0 is the subject house)
 houses.sort((a, b) => Math.hypot(a.centerLocalFt.E, a.centerLocalFt.N) - Math.hypot(b.centerLocalFt.E, b.centerLocalFt.N));
-houses.forEach((h, k) => h.id = k);
+const remap = new Int32Array(houses.length);      // pre-sort id -> post-sort id
+houses.forEach((h, k) => { remap[h.id] = k; h.id = k; });
+
+// ---- houses.bin: the actual per-cell footprint mask the 3D scene extrudes ----
+// Uint16LE, one per grid cell, row0=south/col0=west like every other grid here.
+// 0 = not a house; otherwise houseId + 1 (so id 0 is representable).
+const mask = Buffer.alloc(N * 2);
+for (let i = 0; i < N; i++) {
+  const c = comp[i];                              // -1 = never visited, -2 = rejected (too small)
+  if (c >= 0) mask.writeUInt16LE(remap[c] + 1, i * 2);
+}
+writeFileSync('houses.bin', mask);
 
 // ---- pack naip.bin: 5 bytes/cell [labelC, ndviByte, R, G, B] (row0=south) ----
 const out = Buffer.alloc(N * 5);
@@ -139,6 +165,11 @@ writeFileSync('houses.json', JSON.stringify({
   addressCell: { col: addrCol, row: addrRow },
   cellFt, thrNDVI: THR_NDVI, minFootprintCells: MIN_CELLS,
   count: houses.length,
+  mask: {
+    file: 'houses.bin',
+    layout: 'Uint16LE per cell, 640x640, row0=south col0=west; 0=none else houseId+1',
+  },
+  heights: 'heightFt/ridgeFt = nDSM median/p90 over the house cells; groundFt = median DTM (absolute NAVD88 ft)',
   crossCheck: {
     tallCells: tall.length,
     agree3of3: agree3, agree2of3: agree2,
