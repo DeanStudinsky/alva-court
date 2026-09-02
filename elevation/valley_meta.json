@@ -1,0 +1,37 @@
+{
+  "note": "Elevations in FEET (NAVD88). Grid row0=SOUTH, col0=WEST. World: +X=East, +Z=South, North=-Z. Subtract baseFt for y near 0.",
+  "source": "USGS 3DEP / NED 1/3 arc-second mosaic, reprojected EPSG:26911 (Coachella Valley 3D project)",
+  "nc": 1024,
+  "nr": 1024,
+  "cellFt": 128.28308484848486,
+  "cellM": 39.100684261974585,
+  "utm": {
+    "x0": 528660.3,
+    "y0": 3724180.9,
+    "addrE": 548660.3,
+    "addrN": 3744180.9
+  },
+  "baseFt": 399.57349381574863,
+  "bin": {
+    "file": "valley.bin",
+    "layout": "Float32LE: DTM[nc*nr] (bare earth only \u2014 NED has no surface return)"
+  },
+  "address": {
+    "localFt": [
+      0,
+      0
+    ],
+    "lonlat": [
+      -116.474082,
+      33.83676
+    ]
+  },
+  "sizeFt": [
+    131233.5958,
+    131233.5958
+  ],
+  "elevFt": [
+    -6.9796953201293945,
+    10777.8623046875
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "note": "Coachella Valley planting palette. Drives species assignment in make_psc_landscaping.py and geometry in the scene. Dimensions are mature size in FEET.",
+  "provenance": {
+    "species_list": "Named by the project owner (local knowledge), cross-checked against the Desert Horticultural Society of Coachella Valley 'Common Plants in Coachella Valley' and CVWD's 'Lush & Efficient' plant guide.",
+    "dimensions": "Mature height/spread ranges from standard horticultural references for each taxon; these are the numbers the geometry is built from.",
+    "assignment": "INFERRED. NDVI gives a canopy outline and a crown radius, never a species. Class is picked from crown radius plus habitat, and the whole layer stays flagged inferred in the render."
+  },
+
+  "habitats": {
+    "yard": "inside a parcel, i.e. the NDVI blob was assigned to an OSM building within 160 ft",
+    "street": "unassigned but within the paved network — median, parkway, parking-lot island",
+    "desert": "unassigned and clear of buildings: BLM / open desert / wash. Ornamentals are excluded here on purpose — bougainvillea and pyracantha do not volunteer in the open desert, and putting them there would be inventing the landscape."
+  },
+
+  "classes": [
+    {
+      "key": "palm_robusta", "name": "Mexican fan palm", "taxon": "Washingtonia robusta",
+      "form": "palm", "heightFt": [60, 100], "crownFt": [12, 16], "trunkFt": [1.0, 1.6],
+      "habitat": ["yard", "street"], "colour": "#4a6047",
+      "note": "The tall skinny one. Nearly all height is bare trunk, so it blocks almost nothing at driver eye level — the single most important reason to model palms separately."
+    },
+    {
+      "key": "palm_filifera", "name": "California fan palm", "taxon": "Washingtonia filifera",
+      "form": "palm", "heightFt": [40, 60], "crownFt": [15, 20], "trunkFt": [2.0, 3.0],
+      "habitat": ["yard", "street", "desert"], "colour": "#4a6047",
+      "note": "Native. Thicker trunk, often keeps a dead-frond skirt, which DOES block a sight line."
+    },
+    {
+      "key": "palo_verde", "name": "Palo verde", "taxon": "Parkinsonia florida / P. x 'Desert Museum'",
+      "form": "broadleaf_open", "heightFt": [20, 30], "crownFt": [20, 30], "trunkFt": [0.5, 1.0],
+      "habitat": ["yard", "street", "desert"], "colour": "#6b7d4a",
+      "note": "Green bark, very open airy canopy — partially transparent to a sight line, unlike a ficus."
+    },
+    {
+      "key": "mesquite", "name": "Mesquite", "taxon": "Prosopis glandulosa / P. velutina",
+      "form": "broadleaf_spreading", "heightFt": [20, 30], "crownFt": [25, 35], "trunkFt": [0.8, 1.5],
+      "habitat": ["yard", "street", "desert"], "colour": "#5c6b41",
+      "note": "Wider than tall, low branching. Canopy often starts under 8 ft, which puts it squarely in the driver's view."
+    },
+    {
+      "key": "citrus", "name": "Citrus", "taxon": "Citrus spp. (grapefruit, lemon, orange)",
+      "form": "broadleaf_dense", "heightFt": [12, 20], "crownFt": [12, 18], "trunkFt": [0.5, 0.9],
+      "habitat": ["yard"], "colour": "#3f5c3a",
+      "note": "Dense, dark, opaque, and almost always in a back or side yard."
+    },
+    {
+      "key": "ficus_hedge", "name": "Ficus hedge", "taxon": "Ficus microcarpa (Chinese banyan / Indian laurel)",
+      "form": "hedge", "heightFt": [8, 20], "crownFt": [3, 6], "trunkFt": [0.0, 0.0],
+      "habitat": ["yard"], "colour": "#3a5236",
+      "note": "The clipped Palm Springs privacy hedge. Completely opaque, frequently planted right on the property line at an intersection — the worst case for a sight line. Invasive, prop/aerial roots wreck pavement."
+    },
+    {
+      "key": "ficus_tree", "name": "Ficus tree", "taxon": "Ficus microcarpa",
+      "form": "broadleaf_dense", "heightFt": [25, 40], "crownFt": [20, 35], "trunkFt": [1.0, 2.5],
+      "habitat": ["yard", "street"], "colour": "#3a5236"
+    },
+    {
+      "key": "bougainvillea", "name": "Bougainvillea", "taxon": "Bougainvillea spp.",
+      "form": "shrub_mound", "heightFt": [3, 12], "crownFt": [6, 15], "trunkFt": [0.0, 0.0],
+      "habitat": ["yard"], "colour": "#7a4a63",
+      "note": "Colour is a compromise: the bracts are magenta but the mass is green. Flowers hardest when water-stressed, so it is at its most conspicuous exactly when everything else looks dead."
+    },
+    {
+      "key": "pyracantha", "name": "Pyracantha", "taxon": "Pyracantha coccinea",
+      "form": "shrub_dense", "heightFt": [6, 10], "crownFt": [6, 10], "trunkFt": [0.0, 0.0],
+      "habitat": ["yard"], "colour": "#46583c",
+      "note": "Dense and thorny, grown as a barrier hedge. Opaque at exactly the height that matters."
+    },
+    {
+      "key": "fountain_grass", "name": "Fountain grass", "taxon": "Pennisetum setaceum",
+      "form": "grass_tuft", "heightFt": [3, 4], "crownFt": [3, 4], "trunkFt": [0.0, 0.0],
+      "habitat": ["yard", "street", "desert"], "colour": "#8a8455",
+      "note": "Invasive and naturalised into the washes, so this is the one ornamental that legitimately appears in the desert habitat too."
+    },
+    {
+      "key": "agave_artichoke", "name": "Artichoke agave", "taxon": "Agave parryi var. truncata",
+      "form": "rosette", "heightFt": [2, 3], "crownFt": [3, 4], "trunkFt": [0.0, 0.0],
+      "habitat": ["yard"], "colour": "#6e7f6a"
+    },
+    {
+      "key": "agave_americana", "name": "Century plant", "taxon": "Agave americana",
+      "form": "rosette", "heightFt": [4, 6], "crownFt": [6, 8], "trunkFt": [0.0, 0.0],
+      "habitat": ["yard"], "colour": "#7d8c74"
+    },
+    {
+      "key": "barrel_cactus", "name": "Barrel cactus", "taxon": "Ferocactus cylindraceus",
+      "form": "barrel", "heightFt": [1, 4], "crownFt": [1.5, 2.5], "trunkFt": [0.0, 0.0],
+      "habitat": ["yard", "desert"], "colour": "#6f7a4e"
+    },
+    {
+      "key": "creosote", "name": "Creosote bush", "taxon": "Larrea tridentata",
+      "form": "shrub_open", "heightFt": [4, 8], "crownFt": [5, 8], "trunkFt": [0.0, 0.0],
+      "habitat": ["desert"], "colour": "#5f6b4a",
+      "note": "The default open-desert shrub. Open enough to see through."
+    },
+    {
+      "key": "brittlebush", "name": "Brittlebush", "taxon": "Encelia farinosa",
+      "form": "shrub_mound", "heightFt": [2, 4], "crownFt": [3, 4], "trunkFt": [0.0, 0.0],
+      "habitat": ["desert"], "colour": "#8a9070",
+      "note": "Grey-green mound, the pale dots on desert hillsides in the aerial."
+    }
+  ],
+
+  "turf": [
+    {
+      "key": "bermuda", "name": "Bermuda grass", "taxon": "Cynodon dactylon",
+      "season": "warm", "colourGreen": "#52684b", "colourDormant": "#9d8f63",
+      "note": "The valley default. Goes dormant tan roughly October to April unless overseeded with perennial rye, which is standard on golf courses and HOA frontage here. Which colour is correct depends on the month the render claims to represent."
+    },
+    {
+      "key": "kentucky_blue", "name": "Kentucky bluegrass", "taxon": "Poa pratensis",
+      "season": "cool", "colourGreen": "#4d6350", "colourDormant": "#4d6350",
+      "note": "Cool-season, stays green through winter, slightly bluer than bermuda. Used on lawns and some golf turf."
+    }
+  ],
+
+  "assignmentRule": {
+    "basis": "crown radius from the NDVI blob, then habitat",
+    "yard": [
+      {"maxCrownFt": 2.5, "class": "barrel_cactus"},
+      {"maxCrownFt": 3.5, "class": "agave_artichoke"},
+      {"maxCrownFt": 4.5, "class": "fountain_grass"},
+      {"maxCrownFt": 6.0, "class": "pyracantha"},
+      {"maxCrownFt": 9.0, "class": "bougainvillea"},
+      {"maxCrownFt": 13.0, "class": "citrus"},
+      {"maxCrownFt": 18.0, "class": "palm_filifera"},
+      {"maxCrownFt": 26.0, "class": "palo_verde"},
+      {"maxCrownFt": 999.0, "class": "mesquite"}
+    ],
+    "street": [
+      {"maxCrownFt": 4.5, "class": "fountain_grass"},
+      {"maxCrownFt": 16.0, "class": "palm_robusta"},
+      {"maxCrownFt": 26.0, "class": "palo_verde"},
+      {"maxCrownFt": 999.0, "class": "ficus_tree"}
+    ],
+    "desert": [
+      {"maxCrownFt": 2.5, "class": "barrel_cactus"},
+      {"maxCrownFt": 4.0, "class": "brittlebush"},
+      {"maxCrownFt": 8.0, "class": "creosote"},
+      {"maxCrownFt": 20.0, "class": "palo_verde"},
+      {"maxCrownFt": 999.0, "class": "mesquite"}
+    ],
+    "caveat": "A crown radius does not identify a species. This table is a documented convention that puts a plausible LOCAL plant of the right size in the right habitat; it is not a determination of what is actually growing there, and the render must keep saying so."
+  }
+}

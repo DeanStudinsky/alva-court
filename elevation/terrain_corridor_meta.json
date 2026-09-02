@@ -1,0 +1,29 @@
+{
+  "note": "Elevations in FEET (NAVD88). Grid row0=SOUTH, col0=WEST. World: +X=East, +Z=South, North=-Z. Subtract baseFt for y near 0.",
+  "source": "USGS 3DEP bare earth via the 3DEPElevation ImageServer, 1 m, block-averaged to 4 m (fetch_3dep_utm.py -> make_corridor_tile.py)",
+  "purpose": "Wash corridor + PSP + Cimarron + Escena. Resolves the Whitewater channel (13.1 ft walls) and the airport platform, neither of which exists in valley.bin at 39 m posting.",
+  "nc": 1500,
+  "nr": 1250,
+  "cellM": 4.0,
+  "cellFt": 13.12335958,
+  "utm": {
+    "x0": 544000.0,
+    "y0": 3742000.0,
+    "addrE": 548660.3,
+    "addrN": 3744180.9,
+    "wkid": 26911
+  },
+  "baseFt": 399.57349381574863,
+  "elevFt": [
+    358.09,
+    681.62
+  ],
+  "bin": {
+    "file": "terrain_corridor.bin",
+    "layout": "Float32LE: DTM[nc*nr]"
+  },
+  "sizeFt": [
+    19685.039370000002,
+    16404.199475
+  ]
+}

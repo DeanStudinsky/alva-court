@@ -1,0 +1,23 @@
+{
+  "note": "USGS 3DEP bare earth, feet NAVD88. Float32LE[nc*nr], row0=SOUTH, col0=WEST. NaN = no data. Subtract baseFt for scene y.",
+  "source": "USGS 3DEPElevation ImageServer (public domain), bboxSR=imageSR=26911",
+  "nc": 6000,
+  "nr": 5000,
+  "cellM": 1.0,
+  "cellFt": 3.280839895,
+  "utm": {
+    "x0": 544000.0,
+    "y0": 3742000.0,
+    "wkid": 26911
+  },
+  "baseFt": 399.57349381574863,
+  "validFraction": 1.0,
+  "elevFt": [
+    357.9,
+    683.67
+  ],
+  "bin": {
+    "file": "dem1m_wash.bin",
+    "layout": "Float32LE feet, NaN=nodata"
+  }
+}

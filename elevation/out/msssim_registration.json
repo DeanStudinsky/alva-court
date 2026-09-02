@@ -1,0 +1,174 @@
+{
+  "alva": {
+    "why": "the subject neighbourhood \u2014 LiDAR ground truth here",
+    "n_ms": 321,
+    "n_osm": 23,
+    "ms": {
+      "dx_m": 1.0,
+      "dy_m": -1.0,
+      "peak": 0.2551,
+      "mean": 0.0793,
+      "sharpness": 3.2158,
+      "coverage": 0.2588,
+      "n": 321
+    },
+    "osm": {
+      "dx_m": 2.5,
+      "dy_m": -1.0,
+      "peak": 0.0843,
+      "mean": 0.0567,
+      "sharpness": 1.4885,
+      "coverage": 0.0283,
+      "n": 23
+    }
+  },
+  "cathedral": {
+    "why": "Cathedral City centre, dense single-storey grid",
+    "n_ms": 157,
+    "n_osm": 22,
+    "ms": {
+      "dx_m": 1.0,
+      "dy_m": -1.0,
+      "peak": 0.2261,
+      "mean": 0.1463,
+      "sharpness": 1.5457,
+      "coverage": 0.1613,
+      "n": 157
+    },
+    "osm": {
+      "dx_m": 1.0,
+      "dy_m": -1.0,
+      "peak": 0.1484,
+      "mean": 0.1225,
+      "sharpness": 1.2112,
+      "coverage": 0.0917,
+      "n": 22
+    }
+  },
+  "palmsprings": {
+    "why": "Palm Springs downtown, the tallest blocks",
+    "n_ms": 76,
+    "n_osm": 59,
+    "ms": {
+      "dx_m": -2.5,
+      "dy_m": -1.0,
+      "peak": 0.212,
+      "mean": 0.1401,
+      "sharpness": 1.5126,
+      "coverage": 0.2802,
+      "n": 76
+    },
+    "osm": {
+      "dx_m": 0.0,
+      "dy_m": -0.5,
+      "peak": 0.2234,
+      "mean": 0.1411,
+      "sharpness": 1.5832,
+      "coverage": 0.3128,
+      "n": 59
+    }
+  },
+  "psp_airport": {
+    "why": "PSP aprons \u2014 aircraft vs hangars",
+    "n_ms": 1,
+    "n_osm": 1,
+    "ms": {
+      "skipped": "coverage 0.000%"
+    },
+    "osm": {
+      "skipped": "coverage 0.001%"
+    }
+  },
+  "dhs": {
+    "why": "Desert Hot Springs, sparse and on a slope",
+    "n_ms": 271,
+    "n_osm": 22,
+    "ms": {
+      "dx_m": 1.5,
+      "dy_m": 0.0,
+      "peak": 0.2538,
+      "mean": 0.1268,
+      "sharpness": 2.0009,
+      "coverage": 0.1823,
+      "n": 271
+    },
+    "osm": {
+      "dx_m": 2.5,
+      "dy_m": 0.5,
+      "peak": 0.1359,
+      "mean": 0.1019,
+      "sharpness": 1.3332,
+      "coverage": 0.0513,
+      "n": 22
+    }
+  },
+  "ranchomirage": {
+    "why": "Rancho Mirage, golf-course fabric",
+    "n_ms": 137,
+    "n_osm": 48,
+    "ms": {
+      "dx_m": 1.0,
+      "dy_m": -1.0,
+      "peak": 0.19,
+      "mean": 0.1082,
+      "sharpness": 1.7556,
+      "coverage": 0.1927,
+      "n": 137
+    },
+    "osm": {
+      "dx_m": -1.0,
+      "dy_m": -0.5,
+      "peak": 0.1509,
+      "mean": 0.1016,
+      "sharpness": 1.4849,
+      "coverage": 0.1222,
+      "n": 48
+    }
+  },
+  "palmdesert": {
+    "why": "Palm Desert retail + big-box roofs",
+    "n_ms": 223,
+    "n_osm": 34,
+    "ms": {
+      "dx_m": 2.5,
+      "dy_m": -1.0,
+      "peak": 0.2213,
+      "mean": 0.0873,
+      "sharpness": 2.5336,
+      "coverage": 0.2209,
+      "n": 223
+    },
+    "osm": {
+      "dx_m": 1.5,
+      "dy_m": -1.0,
+      "peak": 0.1413,
+      "mean": 0.0816,
+      "sharpness": 1.7303,
+      "coverage": 0.1294,
+      "n": 34
+    }
+  },
+  "orchard": {
+    "why": "date grove \u2014 canopy that must not become buildings",
+    "n_ms": 45,
+    "n_osm": 14,
+    "ms": {
+      "dx_m": 0.0,
+      "dy_m": -1.5,
+      "peak": 0.1229,
+      "mean": 0.1094,
+      "sharpness": 1.1238,
+      "coverage": 0.0477,
+      "n": 45
+    },
+    "osm": {
+      "dx_m": -0.5,
+      "dy_m": -2.0,
+      "peak": 0.1265,
+      "mean": 0.1108,
+      "sharpness": 1.142,
+      "coverage": 0.0497,
+      "n": 14
+    }
+  }
+}

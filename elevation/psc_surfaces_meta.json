@@ -1,0 +1,120 @@
+{
+  "note": "Palm Springs + Cathedral City paved surfaces, scene feet, +X=East, +Z=South, y=0 at baseFt. Ribbons are pre-draped; UV u is across the width and v runs along the centreline, both already in tile units, so the texture repeat stays (1,1).",
+  "source": "OpenStreetMap ways (c) OpenStreetMap contributors, ODbL",
+  "ground": "terrain / terrain_wide / terrain_corridor / valley 3DEP tiles, scene groundY() order",
+  "extent": {
+    "s": 33.755,
+    "w": -116.585,
+    "n": 33.875,
+    "e": -116.415
+  },
+  "sidewalks": "only OSM highway=footway + footway=sidewalk ways — never generated alongside a road that does not map one",
+  "tileFt": {
+    "road": 40,
+    "sidewalk": 20
+  },
+  "groups": {
+    "asphalt": {
+      "ways": 11322,
+      "vertices": 660234,
+      "triangles": 637590,
+      "miles": 1099.9
+    },
+    "concrete": {
+      "ways": 177,
+      "vertices": 4284,
+      "triangles": 3930,
+      "miles": 6.2
+    },
+    "unpaved": {
+      "ways": 53,
+      "vertices": 12388,
+      "triangles": 12282,
+      "miles": 21.3
+    },
+    "sidewalk": {
+      "ways": 1008,
+      "vertices": 65680,
+      "triangles": 63664,
+      "miles": 100
+    }
+  },
+  "skippedOutsideTerrain": 0,
+  "bin": {
+    "file": "psc_surfaces.bin",
+    "sections": [
+      {
+        "name": "asphalt_pos",
+        "type": "Float32",
+        "byteOffset": 0,
+        "length": 1980702
+      },
+      {
+        "name": "asphalt_uv",
+        "type": "Float32",
+        "byteOffset": 7922808,
+        "length": 1320468
+      },
+      {
+        "name": "asphalt_idx",
+        "type": "Uint32",
+        "byteOffset": 13204680,
+        "length": 1912770
+      },
+      {
+        "name": "concrete_pos",
+        "type": "Float32",
+        "byteOffset": 20855760,
+        "length": 12852
+      },
+      {
+        "name": "concrete_uv",
+        "type": "Float32",
+        "byteOffset": 20907168,
+        "length": 8568
+      },
+      {
+        "name": "concrete_idx",
+        "type": "Uint32",
+        "byteOffset": 20941440,
+        "length": 11790
+      },
+      {
+        "name": "unpaved_pos",
+        "type": "Float32",
+        "byteOffset": 20988600,
+        "length": 37164
+      },
+      {
+        "name": "unpaved_uv",
+        "type": "Float32",
+        "byteOffset": 21137256,
+        "length": 24776
+      },
+      {
+        "name": "unpaved_idx",
+        "type": "Uint32",
+        "byteOffset": 21236360,
+        "length": 36846
+      },
+      {
+        "name": "sidewalk_pos",
+        "type": "Float32",
+        "byteOffset": 21383744,
+        "length": 197040
+      },
+      {
+        "name": "sidewalk_uv",
+        "type": "Float32",
+        "byteOffset": 22171904,
+        "length": 131360
+      },
+      {
+        "name": "sidewalk_idx",
+        "type": "Uint32",
+        "byteOffset": 22697344,
+        "length": 190992
+      }
+    ]
+  }
+}

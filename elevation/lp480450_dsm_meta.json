@@ -1,0 +1,32 @@
+{
+  "source": "USGS 3DEP LiDAR CA_SaltonSea_EarthMRI_2021_D21 tile 11SNT480440 (flown 2021)",
+  "crs": "UTM Zone 11N, NAD83 (EPSG:26911); vertical NAVD88 meters",
+  "address": "68075 Alva Court, Cathedral City CA 92234",
+  "addressUTM": {
+    "east": 548660.3,
+    "north": 3744180.9
+  },
+  "grid": {
+    "ncols": 800,
+    "nrows": 200,
+    "cellSize_m": 0.5,
+    "xllcorner": 548400,
+    "yllcorner": 3745000
+  },
+  "dsm": {
+    "min_m": 125.6500015258789,
+    "max_m": 153.6699981689453,
+    "min_ft": 412.2375378129144,
+    "max_ft": 504.16666065725275,
+    "relief_ft": 91.92912284433835
+  },
+  "dtm": {
+    "min_m": 125.54000091552734,
+    "max_m": 129.6699981689453
+  },
+  "heightmap_png": {
+    "file": "lp480450_heightmap_16bit.png",
+    "encoding": "16-bit grayscale, 0=min .. 65535=max, north up",
+    "decode": "elevation_m = min_m + (gray/65535)*(max_m-min_m)"
+  }
+}

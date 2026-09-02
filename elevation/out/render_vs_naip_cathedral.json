@@ -1,0 +1,48 @@
+{
+  "site": "cathedral",
+  "tone": {
+    "road": {
+      "naip": "#707877",
+      "render": "#6e787a",
+      "dE76": 1.0,
+      "correction": [
+        1.0182,
+        1.0,
+        0.9754
+      ],
+      "px": 158478
+    },
+    "sidewalk": {
+      "naip": "#b2ada0",
+      "render": "#abaca6",
+      "dE76": 4.6,
+      "correction": [
+        1.0409,
+        1.0058,
+        0.9639
+      ],
+      "px": 2321
+    },
+    "ground": {
+      "naip": "#aba89d",
+      "render": "#a5a39c",
+      "dE76": 5.5,
+      "correction": [
+        1.0364,
+        1.0307,
+        1.0064
+      ],
+      "px": 666841
+    }
+  },
+  "structure": {
+    "by_orientation": {
+      "as-is": 0.1768719612205226,
+      "flipud": 0.09732864325465262,
+      "fliplr": 0.11746813529761276,
+      "rot180": 0.09710627517097126
+    },
+    "best": "as-is",
+    "margin": 0.05940382592290984
+  }
+}

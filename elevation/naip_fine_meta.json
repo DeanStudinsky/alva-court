@@ -1,0 +1,22 @@
+{
+  "note": "uint8 [R,G,B,NIR] per cell. row0=SOUTH, col0=WEST.",
+  "source": "USGS NAIP ImageServer, The National Map (public domain)",
+  "nc": 2000,
+  "nr": 2000,
+  "cellM": 0.5,
+  "cellFt": 1.6404199475,
+  "utm": {
+    "x0": 548000.0,
+    "y0": 3744000.0,
+    "wkid": 26911
+  },
+  "bands": 4,
+  "bin": {
+    "file": "naip_fine.bin",
+    "layout": "uint8 [R,G,B,NIR]"
+  },
+  "ndvi": {
+    "mean": 0.09380374848842621,
+    "veg_frac": 0.32260625
+  }
+}

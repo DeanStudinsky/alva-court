@@ -1,0 +1,101 @@
+{
+  "note": "Building volumes inside the valley.bin box. Scene feet, +X=East, +Z=South, y=0 at baseFt. Extrude each ring from bot[i] to top[i].",
+  "sources": {
+    "footprints": "OpenStreetMap building ways + multipolygon outers, (c) OpenStreetMap contributors, ODbL",
+    "heightLidar": "USGS 3DEP LiDAR CA_SaltonSea_EarthMRI_2021_D21 - nDSM p75 inside the ring",
+    "heightStated": "OSM height= / building:levels=",
+    "heightInferred": "building=* type then footprint area, see inferHeight()",
+    "ground": "terrain / terrain_wide / terrain_corridor / valley 3DEP tiles, same order as the scene groundY()"
+  },
+  "flag": {
+    "0": "inferred height",
+    "1": "measured - 3DEP LiDAR nDSM",
+    "2": "stated - OSM tag"
+  },
+  "count": 33127,
+  "vertices": 381898,
+  "roofIndices": 946932,
+  "byFlag": {
+    "inferred": 32850,
+    "lidar": 153,
+    "stated": 124
+  },
+  "buildingTypes": {
+    "yes": 28254,
+    "house": 2635,
+    "roof": 803,
+    "retail": 233,
+    "apartments": 185,
+    "carport": 169,
+    "detached": 147,
+    "commercial": 126,
+    "school": 111,
+    "industrial": 94,
+    "hotel": 58,
+    "college": 38,
+    "residential": 35,
+    "hangar": 29,
+    "office": 26,
+    "shed": 22,
+    "garages": 22,
+    "garage": 21,
+    "transportation": 19,
+    "clubhouse": 11
+  },
+  "baseFt": 399.57349381574863,
+  "utm": {
+    "addrE": 548660.3,
+    "addrN": 3744180.9,
+    "xmin": 528660.3,
+    "xmax": 568660.3,
+    "ymin": 3724180.9,
+    "ymax": 3764180.9
+  },
+  "bin": {
+    "file": "valley_buildings.bin",
+    "sections": [
+      {
+        "name": "ringOff",
+        "type": "Uint32",
+        "byteOffset": 0,
+        "length": 33128
+      },
+      {
+        "name": "triOff",
+        "type": "Uint32",
+        "byteOffset": 132512,
+        "length": 33128
+      },
+      {
+        "name": "xz",
+        "type": "Float32",
+        "byteOffset": 265024,
+        "length": 763796
+      },
+      {
+        "name": "tri",
+        "type": "Uint16",
+        "byteOffset": 3320208,
+        "length": 946932
+      },
+      {
+        "name": "top",
+        "type": "Float32",
+        "byteOffset": 5214072,
+        "length": 33127
+      },
+      {
+        "name": "bot",
+        "type": "Float32",
+        "byteOffset": 5346580,
+        "length": 33127
+      },
+      {
+        "name": "flag",
+        "type": "Uint8",
+        "byteOffset": 5479088,
+        "length": 33127
+      }
+    ]
+  }
+}

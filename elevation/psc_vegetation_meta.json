@@ -1,0 +1,68 @@
+{
+  "note": "Palm Springs + Cathedral City vegetation, scene feet, +X=East, +Z=South, y=0 at baseFt. Area meshes are pre-draped. tree[] is 6 floats per tree: x, y, z, heightFt, crownRadiusFt, kind (0 broadleaf, 1 palm).",
+  "source": "OpenStreetMap (c) OpenStreetMap contributors, ODbL",
+  "colour": {
+    "turf": "#52684b",
+    "canopy": "#465f4a",
+    "provenance": "NAIP medians over PS + Cathedral City, measure_psc_tones.py"
+  },
+  "extent": {
+    "s": 33.755,
+    "w": -116.585,
+    "n": 33.875,
+    "e": -116.415
+  },
+  "areas": {
+    "turf": {
+      "ways": 712,
+      "acres": 997.7,
+      "vertices": 761952
+    },
+    "scrub": {
+      "ways": 84,
+      "acres": 83.6,
+      "vertices": 358059
+    }
+  },
+  "trees": {
+    "total": 8719,
+    "palms": 911,
+    "broadleaf": 7808,
+    "fromTreeRows": 7
+  },
+  "bin": {
+    "file": "psc_vegetation.bin",
+    "sections": [
+      {
+        "name": "turf_pos",
+        "type": "Float32",
+        "byteOffset": 0,
+        "length": 2285856
+      },
+      {
+        "name": "turf_idx",
+        "type": "Uint32",
+        "byteOffset": 9143424,
+        "length": 761952
+      },
+      {
+        "name": "scrub_pos",
+        "type": "Float32",
+        "byteOffset": 12191232,
+        "length": 1074177
+      },
+      {
+        "name": "scrub_idx",
+        "type": "Uint32",
+        "byteOffset": 16487940,
+        "length": 358059
+      },
+      {
+        "name": "tree",
+        "type": "Float32",
+        "byteOffset": 17920176,
+        "length": 52314
+      }
+    ]
+  }
+}

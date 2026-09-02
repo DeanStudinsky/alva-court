@@ -20,7 +20,10 @@ const PREFIX = process.env.ALVA_PREFIX ?? null;   // null = original filenames
 const X1 = X0 + NC*CELL, Y1 = Y0 + NR*CELL;
 console.log(`Clip box E[${X0}..${X1}] N[${Y0}..${Y1}]  grid ${NC}x${NR} @ ${CELL}m`);
 
-const buf = readFileSync('raw/LPC_SaltonSea_2021_11SNT480440.laz');
+// ALVA_LAZ lets one code path cut any LPC tile; bare invocation keeps the
+// original single-tile behaviour byte-for-byte.
+const LAZ = process.env.ALVA_LAZ ?? 'raw/LPC_SaltonSea_2021_11SNT480440.laz';
+const buf = readFileSync(LAZ);
 const dv = new DataView(buf.buffer, buf.byteOffset, buf.byteLength);
 const xs=dv.getFloat64(131,true),ys=dv.getFloat64(139,true),zs=dv.getFloat64(147,true);
 const xo=dv.getFloat64(155,true),yo=dv.getFloat64(163,true),zo=dv.getFloat64(171,true);

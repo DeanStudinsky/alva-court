@@ -1,0 +1,40 @@
+{
+  "bulk": {
+    "samples": 18476,
+    "median_ft": -0.17,
+    "mean_ft": -0.66,
+    "std_ft": 4.32,
+    "p05_ft": -8.81,
+    "p95_ft": 5.97
+  },
+  "runways": {
+    "samples": 312,
+    "median_ft": 3.64,
+    "std_ft": 3.42,
+    "dem_relief_ft": 45.9
+  },
+  "horizontal": {
+    "best_dE_m": 0,
+    "best_dN_m": 0,
+    "peak_r": 0.1792,
+    "mean_r": 0.0895,
+    "sharpness": 2.002,
+    "step_m": 10,
+    "search_m": 60
+  },
+  "wash": {
+    "stations": 113,
+    "wall_height_ft": {
+      "median": 13.1,
+      "p10": 8.7,
+      "p90": 16.7
+    },
+    "offset_ft": {
+      "median": -0.1,
+      "std": 1.67,
+      "first_quarter": 0.27,
+      "last_quarter": 0.22
+    },
+    "bed_offset_median_ft": -4.78
+  }
+}

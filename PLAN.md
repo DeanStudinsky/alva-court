@@ -21,6 +21,9 @@ presentable second, decorative last.
 
 - **Everything traceable to a public source.** USGS 3DEP LiDAR, USDA NAIP,
   OpenStreetMap, Census TIGER. No invented geometry presented as measured.
+  This list is exhaustive, not indicative: a Microsoft ML footprint set with
+  four times OSM's coverage and a photogrammetric height on 87% of buildings
+  was built, rendered, and then removed for being outside it.
 - **Say what is measured vs. inferred.** Anything the data cannot support gets
   labelled as an estimate, in the render and in the notes.
 - **Free and reproducible.** CC0/public-domain assets, or generated procedurally.
@@ -34,6 +37,15 @@ Done:
 - [x] Buildings — all 108 extruded from real per-cell footprints, real heights
 - [x] Building classifier — 3 independent routes (LiDAR returns / geometry / NDVI)
 - [x] Street network + 37 stop signs + 22 intersections in scene coordinates
+- [x] Buildings across the valley — 33 127 OpenStreetMap footprints out to the
+      edge of `valley.bin`, provenance flagged per building and toggleable in
+      the scene (`B` / `I`). Heights are almost all inferred: OSM tags a height
+      on 3 of them. See CLAUDE.md for what that trade cost.
+- [x] Palm Springs + Cathedral City paving — 1 100 mi of OSM roadway in asphalt,
+      100 mi of *mapped* sidewalk in concrete, draped on 3DEP
+- [x] Surface tone calibrated against NAIP, not chosen by eye — roadway dE76
+      3.2 / 1.0, sidewalk 4.5 / 4.6, bare ground 9.1 / 5.5 (Palm Springs /
+      Cathedral City). Repeatable: `render_vs_naip_psc.py`
 
 ### P0 — no deliverable without these
 - [ ] **Split into `src/` modules** (do first; every later task is cheaper after)
@@ -75,6 +87,9 @@ Done:
 |---|---|---|---|
 | `terrain.bin` | 0.5 m | 320 m (±525 ft) | Alva Ct block only |
 | `terrain_wide.bin` | 1 m | 1 km (3281 ft) | 7 of the nearest intersections |
+| `valley_buildings.bin` | footprint | 40 km (131 234 ft) | 33 127 OSM buildings, Desert Hot Springs → west Indio |
+| `psc_surfaces.bin` | ribbon | Palm Springs + Cathedral City | 1 100 mi roadway, 100 mi mapped sidewalk |
+| `raw/naip_sites/` | 0.5 m | 8 × 500 m boxes | the calibration references |
 
 OSM covers ±1800 ft, wider than either tile. Intersections beyond the wide tile
 (Tortuga, Concepcion) need an adjacent LAZ tile from USGS TNM.
@@ -82,5 +97,5 @@ OSM covers ±1800 ft, wider than either tile. Intersections beyond the wide tile
 ## Running it
 
 Static HTTP server at the repo root (ES modules + `fetch` both fail on
-`file://`), then open `index.html`. Do **not** serve the repo root with a
+`file://`), then open `neighbourhood.html`. Do **not** serve the repo root with a
 directory-listing server: `.git/config` contains a plaintext token.

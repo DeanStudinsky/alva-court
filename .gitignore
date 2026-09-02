@@ -2,7 +2,6 @@ asphalt_02_4k.blend
 asphalt_02/
 asphalt assets/
 cement assets/
-sim of alva court.html
 reference image.png
 visual examples/
 
@@ -19,3 +18,25 @@ elevation/wide_heightmap_16bit.png
 # texture archives — the extracted folders are committed instead
 grass/*.zip
 stucco/*.zip
+
+# analysis-only tiles — regenerable, not fetched by any scene (see CLAUDE.md)
+elevation/fine_*.asc
+elevation/fine_heightmap_16bit.png
+elevation/lp*_dsm.asc
+elevation/lp*_dtm.asc
+elevation/lp*_heightmap_16bit.png
+elevation/terrain_fine.bin
+elevation/terrain_lp*.bin
+elevation/naip_fine.bin
+*.bak
+*.bak-preswarm
+
+# 1 m 3DEP corridor pull — 120 MB, over GitHub's 100 MB per-file hard limit and
+# not loaded by any scene. terrain_corridor.bin (7.5 MB) is the product derived
+# from it and IS committed. Regenerate with:
+#   python fetch_3dep_utm.py wash 544000 3742000 550000 3747000 1
+elevation/dem1m_*.bin
+
+# NAIP/NDVI working set — rasters are never a product here, only the instances
+# extracted from them are.
+elevation/raw/

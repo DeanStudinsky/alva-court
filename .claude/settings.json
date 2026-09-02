@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(pdal --version)",
+      "Bash(gdalinfo --version)",
+      "Bash(curl --version)",
+      "Bash(curl -s \"https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=68075+Alva+Court+Cathedral+City+CA+92234&benchmark=Public_AR_Current&format=json\")",
+      "Bash(where winget *)",
+      "Bash(where choco *)",
+      "Bash(where conda *)",
+      "Bash(where pip *)",
+      "Bash(cd /tmp)",
+      "Bash(curl -s 'https://tnmaccess.nationalmap.gov/api/v1/products?datasets=Digital%20Elevation%20Model%20\\(DEM\\)%201%20meter&bbox=__TRACKED_VAR__&outputFormat=JSON')",
+      "Bash(node -e 'let s=\"\";process.stdin.on\\(\"data\",d=>s+=d\\).on\\(\"end\",\\(\\)=>{const j=JSON.parse\\(s\\);console.log\\(\"total\",j.total\\);j.items.forEach\\(it=>{const b=it.boundingBox;const inside=\\(-116.474082>=b.minX&&-116.474082<=b.maxX&&33.836760>=b.minY&&33.836760<=b.maxY\\);console.log\\(\"\\\\n\"+it.title\\);console.log\\(\"  flown/pub:\",it.publicationDate,\"size:\",\\(it.sizeInBytes/1e6\\).toFixed\\(0\\)+\"MB\"\\);console.log\\(\"  bbox X\",b.minX.toFixed\\(4\\),b.maxX.toFixed\\(4\\),\" Y\",b.minY.toFixed\\(4\\),b.maxY.toFixed\\(4\\)\\);console.log\\(\"  COVERS ADDRESS:\",inside\\);console.log\\(\"  laz:\",it.downloadLazURL\\)}\\)}\\)')",
+      "Bash(mkdir -p elevation/raw)",
+      "Bash(npm --version)",
+      "Bash(curl -s -o \"USGS_1M_DEM_CaliforniaGaps_B23.tif\" \"https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/CA_CaliforniaGaps_B23/TIFF/USGS_1M_11_x54y375_CA_CaliforniaGaps_B23.tif\")",
+      "Bash(cat)",
+      "Bash(node probe_header.mjs)",
+      "Bash(node getroad.mjs)",
+      "Bash(awk '{print $5\"\\\\t\"$9}')",
+      "Bash(cd /d/keshi/Code/'Alva Court' && find . -type f -name \"*\" | head -100)",
+      "Read(//d/d/keshi/Code/**)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(node -e ' *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:7432/index.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:7432/elevation/terrain.bin)",
+      "Bash(where npx *)",
+      "Bash(npx --yes playwright --version)",
+      "Bash(node -e \"require\\('@playwright/test'\\)\")",
+      "Bash(node -e \"require\\('playwright-core'\\)\")",
+      "Read(//c/Users/dmcge/AppData/Roaming/npm/node_modules/**)",
+      "Bash(npm list *)",
+      "Bash(npx playwright *)",
+      "Read(//c/Users/dmcge/AppData/Local/Temp/**)"
+    ]
+  }
+}

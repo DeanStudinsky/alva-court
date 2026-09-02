@@ -1,0 +1,48 @@
+{
+  "site": "palmsprings",
+  "tone": {
+    "road": {
+      "naip": "#747d7c",
+      "render": "#717a7c",
+      "dE76": 3.2,
+      "correction": [
+        1.0265,
+        1.0246,
+        1.0
+      ],
+      "px": 159723
+    },
+    "sidewalk": {
+      "naip": "#aaa9a0",
+      "render": "#adada7",
+      "dE76": 4.5,
+      "correction": [
+        0.9827,
+        0.9769,
+        0.9581
+      ],
+      "px": 24838
+    },
+    "ground": {
+      "naip": "#9e9c92",
+      "render": "#a8a59c",
+      "dE76": 9.1,
+      "correction": [
+        0.9405,
+        0.9455,
+        0.9359
+      ],
+      "px": 504351
+    }
+  },
+  "structure": {
+    "by_orientation": {
+      "as-is": 0.14011076771376466,
+      "flipud": 0.09359740678757977,
+      "fliplr": 0.07677752205406231,
+      "rot180": 0.08033440627001419
+    },
+    "best": "as-is",
+    "margin": 0.04651336092618488
+  }
+}
